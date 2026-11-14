@@ -58,6 +58,18 @@ npm run fetch
 4. El workflow `.github/workflows/update-data.yml` ejecuta `npm run fetch` dos veces al día
    (09:00 y 19:00 hora de Madrid) y hace commit automático si hay cambios.
 
+### Fuera de los buscadores
+
+La web es de un equipo infantil y no debe salir en Google ni en otros buscadores:
+
+- `index.html` lleva `<meta name="robots" content="noindex, nofollow">`. Es lo que
+  de verdad funciona: Google lo lee y retira la URL del índice.
+- `public/robots.txt` bloquea a buscadores y a rastreadores de IA (GPTBot, CCBot,
+  ClaudeBot, PerplexityBot…). Ojo: los robots sólo leen `/robots.txt` de la raíz
+  del dominio, así que en una *project page* (`usuario.github.io/repo/`) puede que
+  no lo lean nunca; el `noindex` del HTML sí aplica siempre.
+- No hay forma de añadir cabeceras HTTP (`X-Robots-Tag`) en GitHub Pages.
+
 ### Publicar cambios de código
 
 El app shell (html/js/css) se sirve desde caché, así que al tocar `index.html`,
