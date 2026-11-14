@@ -2,8 +2,8 @@ name: Actualizar datos RFFM
 
 on:
   schedule:
-    # Cada día a las 09:00 y 19:00 hora de Madrid (07:00 y 17:00 UTC)
-    - cron: '0 7,17 * * *'
+    # Cada día a las 12:00 y 22:00 hora de Madrid (10:00 y 20:00 UTC)
+    - cron: '0 10,20 * * *'
   workflow_dispatch:
   push:
     branches: [main]
