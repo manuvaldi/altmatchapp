@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Madrid Río Arganzuela 'C' · AltMatch</title>
+  <meta name="description" content="Clasificación, calendario y resultados del C.F. Madrid Río - Arganzuela 'C', Preferente Benjamín F7 · Grupo 14. Datos oficiales de la RFFM." />
+  <meta name="theme-color" content="#1e46ff" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="data/crests/00100_0014266052_MR.png" />
+  <link rel="apple-touch-icon" href="data/crests/00100_0014266052_MR.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <div class="hero__crest" id="hero-crest" aria-hidden="true"></div>
+      <div class="hero__text">
+        <p class="hero__eyebrow" id="hero-eyebrow">Preferente Benjamín F7</p>
+        <h1 class="hero__title" id="hero-title">Madrid Río – Arganzuela 'C'</h1>
+        <p class="hero__season" id="hero-season">Temporada 2026–2027</p>
+      </div>
+    </div>
+
+    <div class="hero__stats" id="hero-stats"></div>
+  </header>
+
+  <nav class="tabs" aria-label="Secciones">
+    <div class="tabs__inner" role="tablist">
+      <a class="tab" href="#resumen" role="tab" data-tab="resumen">Resumen</a>
+      <a class="tab" href="#clasificacion" role="tab" data-tab="clasificacion">Clasificación</a>
+      <a class="tab" href="#calendario" role="tab" data-tab="calendario">Calendario</a>
+      <a class="tab" href="#equipo" role="tab" data-tab="equipo">Equipo</a>
+    </div>
+  </nav>
+
+  <main id="main" class="main">
+    <section class="view" id="view-resumen" role="tabpanel" aria-labelledby="tab-resumen" hidden></section>
+    <section class="view" id="view-clasificacion" role="tabpanel" aria-labelledby="tab-clasificacion" hidden></section>
+    <section class="view" id="view-calendario" role="tabpanel" aria-labelledby="tab-calendario" hidden></section>
+    <section class="view" id="view-equipo" role="tabpanel" aria-labelledby="tab-equipo" hidden></section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__source">
+      Datos oficiales de la
+      <a id="link-rffm" href="https://www.rffm.es/" target="_blank" rel="noopener">Real Federación de Fútbol de Madrid</a>.
+    </p>
+    <p class="footer__updated" id="updated"></p>
+    <p class="footer__links">
+      <a id="link-calendario" href="#" target="_blank" rel="noopener">Calendario en RFFM</a>
+      <span aria-hidden="true">·</span>
+      <a id="link-clasificacion" href="#" target="_blank" rel="noopener">Clasificación en RFFM</a>
+      <span aria-hidden="true">·</span>
+      <a id="link-ficha" href="#" target="_blank" rel="noopener">Ficha del equipo</a>
+    </p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

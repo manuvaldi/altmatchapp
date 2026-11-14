@@ -1,0 +1,14 @@
+{
+  "name": "altmatchapp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Seguimiento del equipo C.F. MADRID RIO - ARGANZUELA 'C' (RFFM) — web estática para GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "fetch": "node scripts/fetch-data.mjs",
+    "update": "node scripts/fetch-data.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

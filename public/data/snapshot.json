@@ -1,0 +1,2044 @@
+{
+  "generatedAt": "2026-11-14T17:15:04.791Z",
+  "season": {
+    "id": "22",
+    "name": "2026-2027",
+    "start": "2026-07-01",
+    "end": "2027-09-01"
+  },
+  "competition": {
+    "id": "26737926",
+    "name": "PREFERENTE BENJAMÍN F-7"
+  },
+  "group": {
+    "id": "26737940",
+    "name": "Grupo 14- COTORRUELO",
+    "totalRounds": 11,
+    "totalTeams": 12
+  },
+  "team": {
+    "id": "4941878",
+    "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+    "club": "CDE MADRID RIO",
+    "crest": "00100_0014266052_MR.png"
+  },
+  "standings": {
+    "round": 3,
+    "date": "2026-11-14",
+    "competition": "PREFERENTE BENJAMÍN F-7",
+    "group": "Grupo 14- COTORRUELO",
+    "rows": [
+      {
+        "position": 1,
+        "teamId": "467024",
+        "name": "REAL C.D. CARABANCHEL 'C'",
+        "crest": "00100_0010963629_ESCUDO.jpg",
+        "played": 3,
+        "won": 3,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 3,
+        "goalsAgainst": 0,
+        "points": 9,
+        "pointsSanctioned": 0,
+        "form": [
+          "G",
+          "G",
+          "G"
+        ],
+        "homePlayed": 1,
+        "homeWon": 1,
+        "homeDrawn": 0,
+        "homeLost": 0,
+        "awayPlayed": 2,
+        "awayWon": 2,
+        "awayDrawn": 0,
+        "awayLost": 0
+      },
+      {
+        "position": 2,
+        "teamId": "13571349",
+        "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+        "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png",
+        "played": 3,
+        "won": 3,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 3,
+        "goalsAgainst": 0,
+        "points": 9,
+        "pointsSanctioned": 0,
+        "form": [
+          "G",
+          "G",
+          "G"
+        ],
+        "homePlayed": 1,
+        "homeWon": 1,
+        "homeDrawn": 0,
+        "homeLost": 0,
+        "awayPlayed": 2,
+        "awayWon": 2,
+        "awayDrawn": 0,
+        "awayLost": 0
+      },
+      {
+        "position": 3,
+        "teamId": "1032269",
+        "name": "C.D. FORTUNA 'A'",
+        "crest": "00100_0014258135_fortuna.png",
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "goalsFor": 3,
+        "goalsAgainst": 1,
+        "points": 7,
+        "pointsSanctioned": 0,
+        "form": [
+          "G",
+          "G",
+          "E"
+        ],
+        "homePlayed": 1,
+        "homeWon": 1,
+        "homeDrawn": 0,
+        "homeLost": 0,
+        "awayPlayed": 2,
+        "awayWon": 1,
+        "awayDrawn": 1,
+        "awayLost": 0
+      },
+      {
+        "position": 4,
+        "teamId": "4923922",
+        "name": "C.D.E. LEGASUR-RAYO 'A'",
+        "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg",
+        "played": 3,
+        "won": 2,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "points": 6,
+        "pointsSanctioned": 0,
+        "form": [
+          "G",
+          "P",
+          "G"
+        ],
+        "homePlayed": 2,
+        "homeWon": 2,
+        "homeDrawn": 0,
+        "homeLost": 0,
+        "awayPlayed": 1,
+        "awayWon": 0,
+        "awayDrawn": 0,
+        "awayLost": 1
+      },
+      {
+        "position": 5,
+        "teamId": "24235828",
+        "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+        "crest": "00100_0014268810_arganzuela.png",
+        "played": 3,
+        "won": 2,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "points": 6,
+        "pointsSanctioned": 0,
+        "form": [
+          "G",
+          "G",
+          "P"
+        ],
+        "homePlayed": 2,
+        "homeWon": 1,
+        "homeDrawn": 0,
+        "homeLost": 1,
+        "awayPlayed": 1,
+        "awayWon": 1,
+        "awayDrawn": 0,
+        "awayLost": 0
+      },
+      {
+        "position": 6,
+        "teamId": "300129",
+        "name": "REAL C.D. CARABANCHEL 'B'",
+        "crest": "00100_0010963629_ESCUDO.jpg",
+        "played": 3,
+        "won": 1,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 2,
+        "goalsAgainst": 2,
+        "points": 4,
+        "pointsSanctioned": 0,
+        "form": [
+          "G",
+          "P",
+          "E"
+        ],
+        "homePlayed": 2,
+        "homeWon": 1,
+        "homeDrawn": 1,
+        "homeLost": 0,
+        "awayPlayed": 1,
+        "awayWon": 0,
+        "awayDrawn": 0,
+        "awayLost": 1
+      },
+      {
+        "position": 7,
+        "teamId": "1506",
+        "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+        "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "points": 3,
+        "pointsSanctioned": 0,
+        "form": [
+          "P",
+          "G",
+          "P"
+        ],
+        "homePlayed": 2,
+        "homeWon": 0,
+        "homeDrawn": 0,
+        "homeLost": 2,
+        "awayPlayed": 1,
+        "awayWon": 1,
+        "awayDrawn": 0,
+        "awayLost": 0
+      },
+      {
+        "position": 8,
+        "teamId": "17132597",
+        "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+        "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "points": 3,
+        "pointsSanctioned": 0,
+        "form": [
+          "P",
+          "P",
+          "G"
+        ],
+        "homePlayed": 1,
+        "homeWon": 0,
+        "homeDrawn": 0,
+        "homeLost": 1,
+        "awayPlayed": 2,
+        "awayWon": 1,
+        "awayDrawn": 0,
+        "awayLost": 1
+      },
+      {
+        "position": 9,
+        "teamId": "857835",
+        "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+        "crest": "00100_0014266052_MR.png",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "points": 3,
+        "pointsSanctioned": 0,
+        "form": [
+          "P",
+          "G",
+          "P"
+        ],
+        "homePlayed": 2,
+        "homeWon": 0,
+        "homeDrawn": 0,
+        "homeLost": 2,
+        "awayPlayed": 1,
+        "awayWon": 1,
+        "awayDrawn": 0,
+        "awayLost": 0
+      },
+      {
+        "position": 10,
+        "teamId": "4941878",
+        "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+        "crest": "00100_0014266052_MR.png",
+        "played": 3,
+        "won": 1,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "points": 3,
+        "pointsSanctioned": 0,
+        "form": [
+          "P",
+          "P",
+          "G"
+        ],
+        "homePlayed": 1,
+        "homeWon": 0,
+        "homeDrawn": 0,
+        "homeLost": 1,
+        "awayPlayed": 2,
+        "awayWon": 1,
+        "awayDrawn": 0,
+        "awayLost": 1
+      },
+      {
+        "position": 11,
+        "teamId": "24026240",
+        "name": "A.D. ROCIO LEGANES 'A'",
+        "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 0,
+        "goalsAgainst": 3,
+        "points": 0,
+        "pointsSanctioned": 0,
+        "form": [
+          "P",
+          "P",
+          "P"
+        ],
+        "homePlayed": 1,
+        "homeWon": 0,
+        "homeDrawn": 0,
+        "homeLost": 1,
+        "awayPlayed": 2,
+        "awayWon": 0,
+        "awayDrawn": 0,
+        "awayLost": 2
+      },
+      {
+        "position": 12,
+        "teamId": "24235778",
+        "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+        "crest": "00100_0014268810_arganzuela.png",
+        "played": 3,
+        "won": 0,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 0,
+        "goalsAgainst": 3,
+        "points": 0,
+        "pointsSanctioned": 0,
+        "form": [
+          "P",
+          "P",
+          "P"
+        ],
+        "homePlayed": 2,
+        "homeWon": 0,
+        "homeDrawn": 0,
+        "homeLost": 2,
+        "awayPlayed": 1,
+        "awayWon": 0,
+        "awayDrawn": 0,
+        "awayLost": 1
+      }
+    ]
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-10-24",
+      "label": "1",
+      "matches": [
+        {
+          "id": "5715355",
+          "round": 1,
+          "date": "2026-10-24",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "BAHON ALVAREZ, IKER",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715355"
+        },
+        {
+          "id": "5715356",
+          "round": 1,
+          "date": "2026-10-24",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "BAHON ALVAREZ, IKER",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715356"
+        },
+        {
+          "id": "5715357",
+          "round": 1,
+          "date": "2026-10-24",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "RODRÍGUEZ BENEITEZ, JAVIER",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
+          "penalties": null,
+          "home": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "away": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715357"
+        },
+        {
+          "id": "5715358",
+          "round": 1,
+          "date": "2026-10-24",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "RODRÍGUEZ BENEITEZ, JAVIER",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "away": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715358"
+        },
+        {
+          "id": "5715359",
+          "round": 1,
+          "date": "2026-10-24",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "VICENTI JIMENEZ, GONZALO",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
+          "penalties": null,
+          "home": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "away": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715359"
+        },
+        {
+          "id": "5715360",
+          "round": 1,
+          "date": "2026-10-24",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "VICENTI JIMENEZ, GONZALO",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
+          "penalties": null,
+          "home": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715360"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "date": "2026-11-07",
+      "label": "2",
+      "matches": [
+        {
+          "id": "5715361",
+          "round": 2,
+          "date": "2026-11-07",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "DIAZ GONZALEZ, FRANCISCO DAVID",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
+          "penalties": null,
+          "home": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715361"
+        },
+        {
+          "id": "5715362",
+          "round": 2,
+          "date": "2026-11-07",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "RODRIGUEZ FELIP, ALVARO ",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
+          "penalties": null,
+          "home": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715362"
+        },
+        {
+          "id": "5715363",
+          "round": 2,
+          "date": "2026-11-07",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "DIAZ GONZALEZ, FRANCISCO DAVID",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715363"
+        },
+        {
+          "id": "5715364",
+          "round": 2,
+          "date": "2026-11-07",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "GOMEZ MAROTO, PELAYO",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
+          "penalties": null,
+          "home": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "away": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715364"
+        },
+        {
+          "id": "5715365",
+          "round": 2,
+          "date": "2026-11-07",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "GOMEZ MAROTO, PELAYO",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "away": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715365"
+        },
+        {
+          "id": "5715366",
+          "round": 2,
+          "date": "2026-11-07",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "RODRIGUEZ FELIP, ALVARO ",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "away": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715366"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "date": "2026-11-14",
+      "label": "3",
+      "matches": [
+        {
+          "id": "5715367",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "BARRIO CASTRO, ELENA",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715367"
+        },
+        {
+          "id": "5715368",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "CAMARA DIAZ, RUBEN",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715368"
+        },
+        {
+          "id": "5715369",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "LORENTE VIADER, CARLOS",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715369"
+        },
+        {
+          "id": "5715370",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": "CAMARA DIAZ, RUBEN",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
+          "penalties": null,
+          "home": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "away": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715370"
+        },
+        {
+          "id": "5715371",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "BARRIO CASTRO, ELENA",
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "away": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715371"
+        },
+        {
+          "id": "5715372",
+          "round": 3,
+          "date": "2026-11-14",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": "PECO ALVAREZ, JORGE",
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 1
+          },
+          "penalties": null,
+          "home": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715372"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "date": "2026-11-21",
+      "label": "4",
+      "matches": [
+        {
+          "id": "5715373",
+          "round": 4,
+          "date": "2026-11-21",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715373"
+        },
+        {
+          "id": "5715374",
+          "round": 4,
+          "date": "2026-11-21",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715374"
+        },
+        {
+          "id": "5715375",
+          "round": 4,
+          "date": "2026-11-21",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "away": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715375"
+        },
+        {
+          "id": "5715376",
+          "round": 4,
+          "date": "2026-11-21",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "away": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715376"
+        },
+        {
+          "id": "5715377",
+          "round": 4,
+          "date": "2026-11-21",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "away": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715377"
+        },
+        {
+          "id": "5715378",
+          "round": 4,
+          "date": "2026-11-21",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "away": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715378"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "date": "2026-11-28",
+      "label": "5",
+      "matches": [
+        {
+          "id": "5715379",
+          "round": 5,
+          "date": "2026-11-28",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715379"
+        },
+        {
+          "id": "5715380",
+          "round": 5,
+          "date": "2026-11-28",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715380"
+        },
+        {
+          "id": "5715381",
+          "round": 5,
+          "date": "2026-11-28",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715381"
+        },
+        {
+          "id": "5715382",
+          "round": 5,
+          "date": "2026-11-28",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715382"
+        },
+        {
+          "id": "5715383",
+          "round": 5,
+          "date": "2026-11-28",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "away": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715383"
+        },
+        {
+          "id": "5715384",
+          "round": 5,
+          "date": "2026-11-28",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715384"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "date": "2026-12-12",
+      "label": "6",
+      "matches": [
+        {
+          "id": "5715385",
+          "round": 6,
+          "date": "2026-12-12",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715385"
+        },
+        {
+          "id": "5715386",
+          "round": 6,
+          "date": "2026-12-12",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "away": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715386"
+        },
+        {
+          "id": "5715387",
+          "round": 6,
+          "date": "2026-12-12",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "away": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715387"
+        },
+        {
+          "id": "5715388",
+          "round": 6,
+          "date": "2026-12-12",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "away": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715388"
+        },
+        {
+          "id": "5715389",
+          "round": 6,
+          "date": "2026-12-12",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "away": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715389"
+        },
+        {
+          "id": "5715390",
+          "round": 6,
+          "date": "2026-12-12",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "away": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715390"
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "date": "2026-12-19",
+      "label": "7",
+      "matches": [
+        {
+          "id": "5715391",
+          "round": 7,
+          "date": "2026-12-19",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715391"
+        },
+        {
+          "id": "5715392",
+          "round": 7,
+          "date": "2026-12-19",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715392"
+        },
+        {
+          "id": "5715393",
+          "round": 7,
+          "date": "2026-12-19",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715393"
+        },
+        {
+          "id": "5715394",
+          "round": 7,
+          "date": "2026-12-19",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715394"
+        },
+        {
+          "id": "5715395",
+          "round": 7,
+          "date": "2026-12-19",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715395"
+        },
+        {
+          "id": "5715396",
+          "round": 7,
+          "date": "2026-12-19",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715396"
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "date": "2027-01-16",
+      "label": "8",
+      "matches": [
+        {
+          "id": "5715397",
+          "round": 8,
+          "date": "2027-01-16",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "away": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715397"
+        },
+        {
+          "id": "5715398",
+          "round": 8,
+          "date": "2027-01-16",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "away": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715398"
+        },
+        {
+          "id": "5715399",
+          "round": 8,
+          "date": "2027-01-16",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "away": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715399"
+        },
+        {
+          "id": "5715400",
+          "round": 8,
+          "date": "2027-01-16",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "away": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715400"
+        },
+        {
+          "id": "5715401",
+          "round": 8,
+          "date": "2027-01-16",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "away": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715401"
+        },
+        {
+          "id": "5715402",
+          "round": 8,
+          "date": "2027-01-16",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "away": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715402"
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "date": "2027-01-23",
+      "label": "9",
+      "matches": [
+        {
+          "id": "5715403",
+          "round": 9,
+          "date": "2027-01-23",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "away": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715403"
+        },
+        {
+          "id": "5715404",
+          "round": 9,
+          "date": "2027-01-23",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715404"
+        },
+        {
+          "id": "5715405",
+          "round": 9,
+          "date": "2027-01-23",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715405"
+        },
+        {
+          "id": "5715406",
+          "round": 9,
+          "date": "2027-01-23",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715406"
+        },
+        {
+          "id": "5715407",
+          "round": 9,
+          "date": "2027-01-23",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715407"
+        },
+        {
+          "id": "5715408",
+          "round": 9,
+          "date": "2027-01-23",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715408"
+        }
+      ]
+    },
+    {
+      "round": 10,
+      "date": "2027-01-30",
+      "label": "10",
+      "matches": [
+        {
+          "id": "5715409",
+          "round": 10,
+          "date": "2027-01-30",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715409"
+        },
+        {
+          "id": "5715410",
+          "round": 10,
+          "date": "2027-01-30",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "away": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715410"
+        },
+        {
+          "id": "5715411",
+          "round": 10,
+          "date": "2027-01-30",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "away": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715411"
+        },
+        {
+          "id": "5715412",
+          "round": 10,
+          "date": "2027-01-30",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "away": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715412"
+        },
+        {
+          "id": "5715413",
+          "round": 10,
+          "date": "2027-01-30",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "away": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715413"
+        },
+        {
+          "id": "5715414",
+          "round": 10,
+          "date": "2027-01-30",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715414"
+        }
+      ]
+    },
+    {
+      "round": 11,
+      "date": "2027-02-06",
+      "label": "11",
+      "matches": [
+        {
+          "id": "5715415",
+          "round": 11,
+          "date": "2027-02-06",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24026240",
+            "name": "A.D. ROCIO LEGANES 'A'",
+            "crest": "00100_0012202365_Captura_de_pantalla_2026_08_03_132547.png"
+          },
+          "away": {
+            "id": "17132597",
+            "name": "ATLETICO TRABENCO ZARZAQUEMADA 'A'",
+            "crest": "00100_0011037990_Escudo_nuevo_2_colores.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715415"
+        },
+        {
+          "id": "5715416",
+          "round": 11,
+          "date": "2027-02-06",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "13571349",
+            "name": "S.A.D. FUNDACION C.D. LEGANES 'B'",
+            "crest": "00100_0011114701_00100_0011100932_Fundaci_n_1.png"
+          },
+          "away": {
+            "id": "1032269",
+            "name": "C.D. FORTUNA 'A'",
+            "crest": "00100_0014258135_fortuna.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715416"
+        },
+        {
+          "id": "5715417",
+          "round": 11,
+          "date": "2027-02-06",
+          "time": "09:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "4941878",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "away": {
+            "id": "1506",
+            "name": "A.D. ESCUELA DE FUTBOL DE CARABANCHEL 'B'",
+            "crest": "00100_0011195225_WhatsApp_Image_2022_07_21_at_07.43.24.jpeg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715417"
+        },
+        {
+          "id": "5715418",
+          "round": 11,
+          "date": "2027-02-06",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-B",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "467024",
+            "name": "REAL C.D. CARABANCHEL 'C'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "away": {
+            "id": "4923922",
+            "name": "C.D.E. LEGASUR-RAYO 'A'",
+            "crest": "00100_0000096878_EQUIPO_LEGASUR.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715418"
+        },
+        {
+          "id": "5715419",
+          "round": 11,
+          "date": "2027-02-06",
+          "time": "11:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235828",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'C'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "857835",
+            "name": "C.F. MADRID RIO - ARGANZUELA 'B'",
+            "crest": "00100_0014266052_MR.png"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715419"
+        },
+        {
+          "id": "5715420",
+          "round": 11,
+          "date": "2027-02-06",
+          "time": "10:00",
+          "venue": "COTORRUELO 3-A",
+          "referee": null,
+          "played": false,
+          "score": null,
+          "penalties": null,
+          "home": {
+            "id": "24235778",
+            "name": "CDB UNION DEPORTIVA ARGANZUELA 'D'",
+            "crest": "00100_0014268810_arganzuela.png"
+          },
+          "away": {
+            "id": "300129",
+            "name": "REAL C.D. CARABANCHEL 'B'",
+            "crest": "00100_0010963629_ESCUDO.jpg"
+          },
+          "acta": "https://www.rffm.es/acta-partido?codacta=5715420"
+        }
+      ]
+    }
+  ],
+  "teamInfo": {
+    "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
+    "club": "CDE MADRID RIO",
+    "category": "PREFERENTE BENJAMIN F7",
+    "crest": "00100_0014266052_MR.png",
+    "website": "www.cfmadridrio.com",
+    "address": "CALLE TOLEDO 126, Madrid, Madrid",
+    "email": "CARLOS@CFMADRIDRIO.COM",
+    "kit": [
+      {
+        "shirt": "AZUL ROYAL",
+        "shorts": "AZUL ROYAL",
+        "socks": "AZUL ROYAL"
+      }
+    ],
+    "kitDesign": [
+      {
+        "shirtColors": [
+          "#2850FF",
+          "#0000D1"
+        ],
+        "shortsColors": [
+          "#2850FF",
+          "#0000D1"
+        ],
+        "socksColors": [
+          "#2850FF",
+          "#FFFFFF"
+        ]
+      }
+    ],
+    "players": [
+      {
+        "id": "23337675",
+        "name": "ALFARO BARQUIN, IÑIGO"
+      },
+      {
+        "id": "19369928",
+        "name": "BALLÚS VARON, MARC"
+      },
+      {
+        "id": "24902610",
+        "name": "BARRETO DURAN, JULIAN"
+      },
+      {
+        "id": "22144413",
+        "name": "BONA JIMENEZ, LUCA"
+      },
+      {
+        "id": "19369901",
+        "name": "DE LA FUENTE SIMEONOV, AARON"
+      },
+      {
+        "id": "15988177",
+        "name": "GARCIA FERNANDEZ-ROCA, GONZALO"
+      },
+      {
+        "id": "19469799",
+        "name": "GARZON AREVALO, ALEX"
+      },
+      {
+        "id": "21537677",
+        "name": "LINACERO PEREZ, LUCAS"
+      },
+      {
+        "id": "25842145",
+        "name": "MARTINEZ ANTON, MATEO"
+      },
+      {
+        "id": "27043793",
+        "name": "MARTINEZ ANTON, THIAGO"
+      },
+      {
+        "id": "19369944",
+        "name": "MORENO BURGOS, MARTIN"
+      },
+      {
+        "id": "20954697",
+        "name": "ORTEGA FERNÁNDEZ, JOSÉ"
+      },
+      {
+        "id": "20862381",
+        "name": "PALOMINO HUAMAN, DYLAN DALMIRO"
+      },
+      {
+        "id": "27919955",
+        "name": "PEREZ SUAREZ, LUCAS SEBASTIAN"
+      },
+      {
+        "id": "21537696",
+        "name": "VALLE MARTIN, GONZALO"
+      }
+    ],
+    "delegates": [
+      "BERMEJO GARCIA, JULIO"
+    ],
+    "coaches": []
+  },
+  "source": {
+    "calendar": "https://www.rffm.es/competicion/calendario?temporada=22&competicion=26737926&grupo=26737940",
+    "team": "https://www.rffm.es/fichaequipo/4941878"
+  }
+}

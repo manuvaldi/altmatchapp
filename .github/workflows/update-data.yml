@@ -1,0 +1,64 @@
+name: Actualizar datos RFFM
+
+on:
+  schedule:
+    # Cada día a las 09:00 y 19:00 hora de Madrid (07:00 y 17:00 UTC)
+    - cron: '0 7,17 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'config.json'
+      - 'scripts/**'
+      - '.github/workflows/update-data.yml'
+
+# Necesario para hacer commit de los datos actualizados
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci --no-audit --no-fund
+
+      - name: Descargar datos de la RFFM
+        run: npm run fetch
+
+      - name: Comprobar que los datos son válidos
+        run: |
+          node -e "
+            const s = require('./public/data/snapshot.json');
+            const team = '4941878';
+            if (!s.standings || !s.standings.rows.length) throw new Error('Sin clasificación');
+            if (!s.rounds || !s.rounds.length) throw new Error('Sin jornadas');
+            const ours = s.rounds.flatMap(r => r.matches).filter(m => m.home.id === team || m.away.id === team);
+            if (!ours.length) throw new Error('Ningún partido del equipo');
+            console.log('OK:', s.standings.rows.length, 'equipos,', s.rounds.length, 'jornadas,', ours.length, 'partidos del equipo');
+          "
+
+      - name: Commitear datos si han cambiado
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data
+          if git diff --staged --quiet; then
+            echo "Sin cambios en los datos."
+          else
+            git commit -m "chore(datos): actualizar datos de la RFFM"
+            git push
+          fi
