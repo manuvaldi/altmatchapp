@@ -1,42 +1,147 @@
 # AltMatch · C.F. Madrid Río – Arganzuela 'C'
 
-Web estática para seguir al equipo: clasificación, calendario, resultados y próximo partido.
-Datos oficiales de la [RFFM](https://www.rffm.es).
+Web **mobile-first** y **offline-first** para seguir al equipo: clasificación, calendario, resultados y próximo partido.
+Datos oficiales de la [RFFM](https://www.rffm.es), con **cache de 6 días** y botón de refrescar.
 
 - **Temporada:** 2026-2027 (`22`)
 - **Competición:** Preferente Benjamín F-7 (`26737926`)
 - **Grupo:** 14 – Cotorruelo (`26737940`)
 - **Equipo:** C.F. MADRID RIO - ARGANZUELA 'C' (`4941878`)
 
-Todo está en `config.json`. Para seguir a otro equipo o grupo, cámbialo allí.
+Todo está en `config.json`. Para seguir a otro equipo o grupo, cámbialo allí y regenera datos.
 
-## Cómo funciona
+## Características
 
-La API de la RFFM no permite llamadas desde el navegador (no envía cabeceras CORS),
-así que un script descarga los datos y genera `public/data/snapshot.json` con los escudos en local.
-La web sólo lee ese fichero.
+✅ **Mobile-first**: responsive a partir de 430 px
+✅ **Offline-first**: Service Worker con cache por 6 días
+✅ **Botón de refrescar**: fuerza descarga de datos nuevos sin perder UI
+✅ **Automático**: GitHub Actions actualiza datos 2x/día
+✅ **Localizable**: Prueba antes de subir a GitHub
 
+## Desarrollo local
+
+```bash
+# Opción 1: Sin contenedor (rápido)
+./dev.sh
+# → http://localhost:8080
+
+# Opción 2: Con podman/docker
+podman build -t altmatch .
+podman run --rm -p 8080:8080 altmatch
+# → http://localhost:8080
 ```
-npm run fetch      # regenera public/data/ (requiere Node 18+)
-```
 
-Un workflow de GitHub Actions (`.github/workflows/update-data.yml`) lo ejecuta dos veces al día
-y hace commit si hay cambios. Otro (`deploy-pages.yml`) publica `public/` en GitHub Pages.
+El script `dev.sh`:
+1. Descarga datos frescos de la RFFM (`npm run fetch`)
+2. Sirve `public/` en http://localhost:8080
+3. El Service Worker cachea todo por 6 días
+4. Botón 🔄 en abajo a la derecha para refrescar sin recargar
+
+### Modificar el equipo
+
+```bash
+# Editar config.json con nuevos IDs
+nano config.json
+
+# Regenerar datos
+npm run fetch
+
+# Probar en local
+./dev.sh
+```
 
 ## Puesta en marcha en GitHub Pages
 
 1. Sube el repositorio a GitHub (rama `main`).
 2. En **Settings → Pages**, en *Build and deployment* elige **Source: GitHub Actions**.
-3. Cada push a `main` despliega la web. Para forzar una actualización de datos, lanza
-   manualmente el workflow *Actualizar datos RFFM* desde la pestaña **Actions**.
+3. Cada push a `main` despliega la web en GitHub Pages.
+4. El workflow `.github/workflows/update-data.yml` ejecuta `npm run fetch` dos veces al día
+   (09:00 y 19:00 hora de Madrid) y hace commit automático si hay cambios.
+
+Para **forzar un refrescar** sin esperar al horario:
+- Abre **Actions → Actualizar datos RFFM → Run workflow**
 
 ## Estructura
 
 ```
-config.json                 temporada, competición, grupo y equipo
-scripts/fetch-data.mjs      descarga y normaliza los datos de la RFFM
-public/                     web estática (index.html, app.js, styles.css)
-public/data/snapshot.json   datos generados
-public/data/crests/         escudos descargados
-.github/workflows/          actualización de datos y despliegue
+config.json                  temporada, competición, grupo y equipo
+scripts/fetch-data.mjs       descarga y normaliza datos de la RFFM
+public/
+  ├─ index.html             estructura HTML
+  ├─ app.js                 lógica (ES6, sin dependencias)
+  ├─ styles.css             diseño responsive (dark mode)
+  ├─ sw.js                  Service Worker (cache + refrescar)
+  ├─ manifest.json          PWA (installable)
+  └─ data/
+      ├─ snapshot.json      datos generados (clasificación, partidos, etc)
+      └─ crests/            escudos descargados
+.github/workflows/
+  ├─ update-data.yml        cron: refrescar datos 2x/día
+  └─ deploy-pages.yml       desplegar en GitHub Pages
+Dockerfile                   imagen para podman/docker
+dev.sh                       servidor de desarrollo (bash)
 ```
+
+## Funcionamiento técnico
+
+La API de la RFFM **no envía cabeceras CORS**, así que una web en GitHub Pages no puede consultarla directamente.
+Solución: `scripts/fetch-data.mjs` descarga todo en "build time" y genera `snapshot.json` con los escudos en local.
+La web solo lee ese fichero estático.
+
+**Service Worker (`public/sw.js`):**
+- **Cache-first**: assets estáticos y datos (`snapshot.json`) se guardan 6 días
+- **Refrescar en background**: nuevo SW notifica al cliente si hay actualizaciones
+- **Offline**: funciona sin conexión (muestra datos cacheados)
+- **Refrescar manual**: el botón 🔄 fuerza descarga del snapshot
+
+**Rendimiento:**
+- Sin dependencias JavaScript (puro ES6)
+- CSS único: ~18 KB
+- App JS: ~20 KB
+- Snapshot: ~20 KB (12 equipos × 11 jornadas)
+- Escudos: ~500 KB (9 equipos)
+- **Total:** ~560 KB descargados una vez, después offline
+
+## Verificación en navegador real
+
+Una vez levantado `./dev.sh` o el contenedor, abre http://localhost:8080 en tu móvil o desktop y verifica:
+
+### Vista "Resumen"
+- [ ] Encabezado azul con escudo del equipo
+- [ ] 3 estadísticas (posición, puntos y diferencia)
+- [ ] Sección "Próximo partido" con J4, fecha, horario, rival, campo
+- [ ] Sección "Posición actual" mostrando 10º de 12 con 3 puntos
+- [ ] Sección "Últimos resultados" (los 3 partidos jugados con resultado)
+
+### Vista "Clasificación"
+- [ ] Tabla con 12 equipos
+- [ ] Tu equipo (Madrid Río C, 10º) resaltado en azul
+- [ ] Columnas: pos, equipo, PJ, V, E, D, DG, Pts, Forma
+
+### Vista "Calendario"
+- [ ] 11 jornadas expandidas
+- [ ] Cada jornada muestra el(los) partido(s) del equipo
+- [ ] Partidos jugados con resultado coloreado (verde=victoria, rojo=derrota, naranja=empate)
+- [ ] Partidos pendientes con hora y "--" en resultado
+
+### Vista "Equipo"
+- [ ] Nombre del equipo, club, categoría, domicilio
+- [ ] 15 jugadores listados
+- [ ] Delegado: BERMEJO GARCIA, JULIO
+- [ ] Equipación en azul royal
+
+### Service Worker & Cache
+- [ ] Abre DevTools (F12) → Application → Service Workers → debe estar "activated and running"
+- [ ] Application → Cache Storage → "altmatch-v1" con archivos
+- [ ] Desconecta internet (DevTools → Network → Offline) → aún funciona con cached
+- [ ] Botón 🔄 abajo a la derecha rotando
+- [ ] Al clickar refrescar → toast "Refrescando datos..."
+
+### Responsividad
+- [ ] Mobile (430px): sin desbordamiento horizontal, tabs scrolleable
+- [ ] Desktop (1280px): tabla de clasificación con más columnas visibles, layout de grid
+
+### Performance
+- [ ] Primera carga: descarga ~560 KB (datos + escudos)
+- [ ] Segunda carga: cachea todo, carga al instante (< 200 ms)
+- [ ] Offline: funciona completamente sin red

@@ -9,6 +9,83 @@ const VIEWS = ['resumen', 'clasificacion', 'calendario', 'equipo'];
 let currentView = VIEWS[0];
 
 /* ========================================================================
+   Toast
+   ======================================================================== */
+
+let toastTimer = null;
+function showToast(message, ms = 3500) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = message;
+  el.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('is-visible'), ms);
+}
+
+window.showToast = showToast;
+
+/* ========================================================================
+   Service Worker
+   ======================================================================== */
+
+async function registerServiceWorker() {
+  if (!navigator.serviceWorker) return;
+  try {
+    const reg = await navigator.serviceWorker.register('sw.js');
+    console.log('✓ Service Worker registrado');
+
+    // Escuchar mensajes del SW
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      const { type } = event.data;
+      if (type === 'CACHE_UPDATED') {
+        showToast('📦 Datos actualizados. Recarga para verlos.');
+      }
+    });
+
+    // Controlar updates
+    reg.addEventListener('updatefound', () => {
+      const newWorker = reg.installing;
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          showToast('⚙️ Nueva versión disponible. Recarga para actualizar.');
+        }
+      });
+    });
+  } catch (err) {
+    console.warn('Service Worker falló:', err.message);
+  }
+}
+
+function refreshCache() {
+  if (!navigator.serviceWorker || !navigator.serviceWorker.controller) {
+    showToast('❌ Service Worker no disponible');
+    return;
+  }
+
+  const btn = document.getElementById('btn-refresh');
+  if (btn) btn.disabled = true;
+  showToast('🔄 Refrescando datos...');
+
+  const channel = new MessageChannel();
+  channel.port1.onmessage = (event) => {
+    if (btn) btn.disabled = false;
+    const { type, error } = event.data;
+    if (type === 'REFRESH_SUCCESS') {
+      showToast('✓ Datos refrescados. Recarga la página.');
+    } else {
+      showToast(`❌ Error: ${error || 'fallo al refrescar'}`);
+    }
+  };
+
+  navigator.serviceWorker.controller.postMessage(
+    { type: 'REFRESH_CACHE', url: 'data/snapshot.json' },
+    [channel.port2],
+  );
+}
+
+window.refreshCache = refreshCache;
+
+/* ========================================================================
    Estado y datos
    ======================================================================== */
 
@@ -22,6 +99,7 @@ async function loadSnapshot() {
 }
 
 async function init() {
+  registerServiceWorker();
   try {
     snapshot = await loadSnapshot();
     render();

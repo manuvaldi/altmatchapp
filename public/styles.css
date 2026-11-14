@@ -523,6 +523,25 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
 .footer a:hover { text-decoration: underline; }
 .footer__updated { color: var(--text-faint); font-size: .72rem; }
 
+/* ---------- Botón flotante ---------- */
+.fab {
+  position: fixed;
+  right: calc(1rem + env(safe-area-inset-right));
+  bottom: calc(1.2rem + env(safe-area-inset-bottom));
+  z-index: 40;
+  width: 3.25rem; height: 3.25rem;
+  display: grid; place-items: center;
+  border: 0; border-radius: 50%;
+  background: var(--brand); color: #fff;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, opacity .15s ease;
+}
+.fab:hover { transform: scale(1.06) rotate(20deg); }
+.fab:active { transform: scale(.94) rotate(90deg); }
+.fab:disabled { opacity: .5; cursor: wait; transform: rotate(180deg); }
+.fab:disabled:hover { transform: rotate(200deg); }
+
 /* ---------- Toast ---------- */
 .toast {
   position: fixed; left: 50%; bottom: calc(1.2rem + env(safe-area-inset-bottom));
