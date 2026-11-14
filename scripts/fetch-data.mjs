@@ -184,25 +184,42 @@ async function main() {
     process.stdout.write(`  · jornada ${round}: ${jornada.matches.length} partidos\n`);
   }
 
-  // Segunda pasada para las jornadas que la API no devolvió (es intermitente)
-  if (missingRounds.length) {
-    console.log(`  ↻ reintentando jornadas ${missingRounds.join(', ')}`);
-    for (const round of missingRounds) {
-      await sleep(3000);
+  // Pasadas extra para las jornadas que la API no devolvió (falla de forma intermitente).
+  // Cada jornada pendiente se reintenta varias veces con espera creciente entre ciclos.
+  for (let cycle = 1; cycle <= 4 && missingRounds.length; cycle++) {
+    console.log(`  ↻ ciclo ${cycle}: reintentando jornadas ${missingRounds.join(', ')}`);
+    await sleep(4000 * cycle);
+    for (const round of [...missingRounds]) {
       const data = await tryJSON(`${API}/results?idGroup=${grupo}&round=${round}`, 8);
-      if (!data) {
-        console.warn(`  ⚠ jornada ${round} sigue sin datos: se omite`);
-        continue;
-      }
+      if (!data) continue;
       const jornada = buildRound(round, data);
       rounds.push(jornada);
-      process.stdout.write(`  · jornada ${round}: ${jornada.matches.length} partidos (recuperada)\n`);
+      missingRounds.splice(missingRounds.indexOf(round), 1);
+      process.stdout.write(`  · jornada ${round}: ${jornada.matches.length} partidos (recuperada en ciclo ${cycle})\n`);
     }
   }
 
   rounds.sort((a, b) => a.round - b.round);
 
   if (!rounds.length) throw new Error('No se pudo descargar ninguna jornada');
+
+  if (missingRounds.length) {
+    console.warn(`\n⚠ Jornadas sin datos tras los reintentos: ${missingRounds.join(', ')}`);
+    console.warn('  La API de la RFFM devuelve "null" de forma intermitente; vuelve a ejecutar más tarde.');
+    if (process.env.ALTMATCH_REQUIRE_COMPLETE) {
+      throw new Error(`Snapshot incompleto: faltan las jornadas ${missingRounds.join(', ')}`);
+    }
+    // Nunca degradar un snapshot existente más completo
+    try {
+      const prev = JSON.parse(await readFile(path.join(OUT_DIR, 'snapshot.json'), 'utf8'));
+      if ((prev.rounds?.length || 0) > rounds.length) {
+        console.error(`✖ El snapshot actual (${prev.rounds.length} jornadas) es más completo que el nuevo (${rounds.length}). No se sobrescribe.`);
+        process.exit(2);
+      }
+    } catch {
+      /* sin snapshot previo: se escribe de todos modos */
+    }
+  }
 
   /* --- 3. Clasificación (la API la "congela" en la última jornada jugada) --- */
 
