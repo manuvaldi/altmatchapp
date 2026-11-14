@@ -939,7 +939,7 @@ function render() {
   document.getElementById('hero-title').textContent = team.name;
   document.getElementById('hero-season').textContent = `${season.name}`;
 
-  // Stats
+  // Stats (dos chips de una sola línea; la diferencia ya aparece en Clasificación)
   let stats = '';
   if (standings) {
     const ourTeam = standings.rows.find((r) => r.teamId === team.id);
@@ -947,17 +947,12 @@ function render() {
       stats += `
         <div class="stat">
           <span class="stat__label">Posición</span>
-          <span class="stat__value">#${ourTeam.position}<small>/${group.totalTeams}</small></span>
+          <span class="stat__value">${ourTeam.position}º<small>/${group.totalTeams}</small></span>
         </div>
         <div class="stat">
           <span class="stat__label">Puntos</span>
           <span class="stat__value">${ourTeam.points}</span>
           <span class="stat__sub">${ourTeam.won}G–${ourTeam.drawn}E–${ourTeam.lost}P</span>
-        </div>
-        <div class="stat">
-          <span class="stat__label">Diferencia</span>
-          <span class="stat__value">${ourTeam.goalsFor}-${ourTeam.goalsAgainst}</span>
-          <span class="stat__sub">${ourTeam.goalsFor - ourTeam.goalsAgainst > 0 ? '+' : ''}${ourTeam.goalsFor - ourTeam.goalsAgainst}</span>
         </div>
       `;
     }
@@ -966,16 +961,12 @@ function render() {
   if (!stats) {
     stats = `
       <div class="stat">
-        <span class="stat__label">${group.name}</span>
-        <span class="stat__value" style="font-size: .9rem;">${group.totalRounds} jornadas</span>
+        <span class="stat__label">Jornadas</span>
+        <span class="stat__value">${group.totalRounds}</span>
       </div>
       <div class="stat">
-        <span class="stat__label">Total equipos</span>
+        <span class="stat__label">Equipos</span>
         <span class="stat__value">${group.totalTeams}</span>
-      </div>
-      <div class="stat">
-        <span class="stat__label">Temporada</span>
-        <span class="stat__value" style="font-size: .85rem;">${season.name}</span>
       </div>
     `;
   }

@@ -98,7 +98,7 @@ img { max-width: 100%; display: block; }
     radial-gradient(120% 140% at 85% -20%, #3b63ff 0%, rgba(59, 99, 255, 0) 55%),
     radial-gradient(100% 120% at 0% 0%, #0b1e6b 0%, #101a4a 45%, #0a1230 100%);
   color: #fff;
-  padding: calc(env(safe-area-inset-top) + 1.5rem) 1.15rem 1.35rem;
+  padding: calc(env(safe-area-inset-top) + 1.1rem) 1.15rem 1rem;
 }
 
 .hero__glow {
@@ -114,6 +114,23 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero__text { min-width: 0; flex: 1 1 0; }
+
+.hero__stats {
+  /* En móvil los chips van en su propia línea, debajo del nombre */
+  flex: 1 0 100%;
+  margin: .7rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+/* Con sitio de sobra, los chips se ponen a la derecha del nombre */
+@media (min-width: 760px) {
+  .hero__stats { flex: 0 1 auto; margin: 0 0 0 auto; align-self: center; justify-content: flex-end; }
 }
 
 .hero__crest {
@@ -142,36 +159,34 @@ img { max-width: 100%; display: block; }
 
 .hero__season { margin: .25rem 0 0; font-size: .85rem; color: rgba(255, 255, 255, .72); }
 
-.hero__stats {
-  position: relative;
-  max-width: var(--max);
-  margin: 1.25rem auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .5rem;
-}
-
+/* Chips de una sola línea: etiqueta y valor en la misma fila */
 .stat {
+  display: flex;
+  align-items: baseline;
+  gap: .4rem;
   background: rgba(255, 255, 255, .08);
   border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: var(--radius-sm);
-  padding: .6rem .65rem;
+  border-radius: 999px;
+  padding: .28rem .7rem;
   min-width: 0;
 }
 .stat__label {
-  display: block;
-  font-size: .62rem;
-  font-weight: 650;
+  font-size: .6rem;
+  font-weight: 700;
   letter-spacing: .07em;
   text-transform: uppercase;
   color: #a9b8f0;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.stat__value { display: block; font-size: 1.3rem; font-weight: 800; letter-spacing: -.03em; margin-top: .1rem; }
-.stat__value small { font-size: .7rem; font-weight: 600; color: #a9b8f0; letter-spacing: 0; }
-.stat__sub { display: block; font-size: .68rem; color: rgba(255, 255, 255, .65); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stat__value {
+  font-size: .86rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.stat__value small { font-size: .68rem; font-weight: 600; color: #a9b8f0; letter-spacing: 0; }
+.stat__sub { font-size: .68rem; color: rgba(255, 255, 255, .68); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* ---------- Tabs ---------- */
 .tabs {
