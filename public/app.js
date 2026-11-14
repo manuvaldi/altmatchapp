@@ -32,6 +32,18 @@ window.showToast = showToast;
 
 async function registerServiceWorker() {
   if (!navigator.serviceWorker) return;
+
+  // Si ya había un SW controlando la página, un cambio de control significa que
+  // se ha instalado una versión nueva: recargamos una vez para no seguir con el
+  // HTML/JS/CSS antiguos que venían de la caché.
+  const hadController = !!navigator.serviceWorker.controller;
+  let recargando = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || recargando) return;
+    recargando = true;
+    location.reload();
+  });
+
   try {
     const reg = await navigator.serviceWorker.register('sw.js');
     console.log('✓ Service Worker registrado');
@@ -299,56 +311,58 @@ function renderResumen(container) {
     const oppCrest = opponent.crest || oppTeam.crest;
 
     html += `
-      <div class="next">
-        <div class="next__top">
-          <span class="next__tag">🎯 Próximo partido</span>
-        </div>
-        <div class="next__when">
-          <span class="next__when-day">${fechaCompacta(nextMatch.date)}</span>
-          <span class="next__when-sep" aria-hidden="true">·</span>
-          <span class="next__when-time">${nextMatch.time || 'Hora por confirmar'}</span>
-        </div>
-        <div class="next__teams">
-          <div class="next__side ${isHome ? 'next__side--us' : ''}">
-            ${escudo(team.crest, team.name, 'next__side--us')}
-            <div class="next__name">${team.name}</div>
-            ${isHome ? '<div class="next__us-tag">Local</div>' : ''}
+      <div class="section">
+        <div class="next">
+          <div class="next__top">
+            <span class="next__tag">🎯 Próximo partido</span>
           </div>
-          <div class="next__vs">vs</div>
-          <div class="next__side">
-            ${escudo(oppCrest, opponent.name)}
-            <div class="next__name">${opponent.name}</div>
-            ${!isHome ? '<div class="next__us-tag">Local</div>' : ''}
+          <div class="next__when">
+            <span class="next__when-day">${fechaCompacta(nextMatch.date)}</span>
+            <span class="next__when-sep" aria-hidden="true">·</span>
+            <span class="next__when-time">${nextMatch.time || 'Hora por confirmar'}</span>
           </div>
-        </div>
-        <div class="next__meta">
-          <div class="meta">
-            <span class="meta__label">Jornada</span>
-            <span class="meta__value">${nextMatch.round} / ${snapshot.group.totalRounds}</span>
+          <div class="next__teams">
+            <div class="next__side ${isHome ? 'next__side--us' : ''}">
+              ${escudo(team.crest, team.name, 'next__side--us')}
+              <div class="next__name">${team.name}</div>
+              ${isHome ? '<div class="next__us-tag">Local</div>' : ''}
+            </div>
+            <div class="next__vs">vs</div>
+            <div class="next__side">
+              ${escudo(oppCrest, opponent.name)}
+              <div class="next__name">${opponent.name}</div>
+              ${!isHome ? '<div class="next__us-tag">Local</div>' : ''}
+            </div>
           </div>
-          <div class="meta">
-            <span class="meta__label">Estadio</span>
-            <span class="meta__value" style="font-size: .78rem;">${nextMatch.venue || '—'}</span>
+          <div class="next__meta">
+            <div class="meta">
+              <span class="meta__label">Jornada</span>
+              <span class="meta__value">${nextMatch.round} / ${snapshot.group.totalRounds}</span>
+            </div>
+            <div class="meta">
+              <span class="meta__label">Estadio</span>
+              <span class="meta__value" style="font-size: .78rem;">${nextMatch.venue || '—'}</span>
+            </div>
+            <div class="meta">
+              <span class="meta__label">Árbitro</span>
+              <span class="meta__value" style="font-size: .78rem;">${nextMatch.referee || 'Sin asignar'}</span>
+            </div>
           </div>
-          <div class="meta">
-            <span class="meta__label">Árbitro</span>
-            <span class="meta__value" style="font-size: .78rem;">${nextMatch.referee || 'Sin asignar'}</span>
+          <div class="next__actions">
+            <button class="btn" onclick="showView('calendario')">Ver calendario</button>
           </div>
-        </div>
-        <div class="next__actions">
-          <button class="btn" onclick="showView('calendario')">Ver calendario</button>
         </div>
       </div>
     `;
   }
 
-  // Posición actual
+  // Posición actual (misma cabecera que la tarjeta de próximo partido)
   html += `
     <div class="section">
-      <div class="section__head">
-        <h2 class="section__title">📊 Posición actual</h2>
-      </div>
-      <div class="card" style="padding: 1rem;">
+      <div class="next">
+        <div class="next__top">
+          <span class="next__tag">📊 Posición actual</span>
+        </div>
         ${
           ourTeam
             ? `
