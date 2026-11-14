@@ -13,7 +13,7 @@
  * sobrevive mientras el navegador no la purgue (muy por encima de 6 días).
  */
 
-const CACHE_NAME = 'altmatch-v3';
+const CACHE_NAME = 'altmatch-v4';
 const SCOPE = self.registration.scope;
 
 const STATIC_ASSETS = ['./', 'index.html', 'app.js', 'styles.css', 'manifest.json'].map(
@@ -163,6 +163,19 @@ self.addEventListener('message', (event) => {
     };
 
     const target = new URL(event.data.url || 'data/snapshot.json', SCOPE);
+
+    // Además del snapshot, se refresca el app shell (html/js/css) para que un
+    // botón "refrescar" baste cuando se publica una versión nueva del código.
+    const refreshShell = caches.open(CACHE_NAME).then((cache) =>
+      Promise.all(
+        STATIC_ASSETS.map((path) =>
+          fetch(path, { cache: 'reload' })
+            .then((res) => (res && res.ok ? cache.put(path, res) : null))
+            .catch(() => null),
+        ),
+      ),
+    );
+
     fetch(target.href, { cache: 'no-cache' })
       .then(async (res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -171,6 +184,7 @@ self.addEventListener('message', (event) => {
         if (!data || !Array.isArray(data.rounds)) throw new Error('datos incompletos');
         const cache = await caches.open(CACHE_NAME);
         await cache.put(target.href, new Response(text, { headers: res.headers }));
+        await refreshShell;
         reply({ type: 'REFRESH_SUCCESS', generatedAt: data.generatedAt || null });
       })
       .catch((err) => reply({ type: 'REFRESH_ERROR', error: err.message }));
