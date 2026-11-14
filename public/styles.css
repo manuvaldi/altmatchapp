@@ -425,7 +425,7 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
 .standings .col-pos { width: 2.2rem; font-weight: 700; color: var(--text-soft); text-align: center; }
 .standings .col-team { text-align: left; min-width: 9.5rem; }
 .standings .col-team-inner { display: flex; align-items: center; gap: .5rem; min-width: 0; }
-.standings .team-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 12rem; }
+.standings .team-name { font-weight: 600; white-space: normal; overflow-wrap: break-word; min-width: 0; }
 .standings .col-pts { font-weight: 800; }
 .standings .col-dg { color: var(--text-soft); }
 .standings .col-form { text-align: right; padding-right: .75rem; }
@@ -444,7 +444,15 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
 /* Columnas que se ocultan en pantallas pequeñas */
 @media (max-width: 720px) {
   .standings .hide-sm { display: none; }
-  .standings .team-name { max-width: 9rem; }
+}
+
+/* Móviles estrechos: nombres completos con letra algo más pequeña y menos aire */
+@media (max-width: 400px) {
+  .standings .col-team { min-width: 7rem; }
+  .standings .col-team-inner { gap: .35rem; }
+  .standings .team-name { font-size: .76rem; line-height: 1.25; }
+  .standings th, .standings td { padding: .5rem .25rem; }
+  .standings .col-team { padding-left: .4rem; }
 }
 
 /* ---------- Segmentado (filtros) ---------- */
