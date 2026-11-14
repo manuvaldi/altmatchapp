@@ -58,6 +58,13 @@ npm run fetch
 4. El workflow `.github/workflows/update-data.yml` ejecuta `npm run fetch` dos veces al día
    (09:00 y 19:00 hora de Madrid) y hace commit automático si hay cambios.
 
+### Publicar cambios de código
+
+El app shell (html/js/css) se sirve desde caché, así que al tocar `index.html`,
+`app.js`, `styles.css` o `names.js` hay que **subir `CACHE_NAME` en `sw.js`**
+(p. ej. `altmatch-v8` → `altmatch-v9`). Así el navegador instala el SW nuevo, y la
+página se recarga sola una vez para mostrar el código actualizado.
+
 ### Iconos de la app
 
 Los iconos de la PWA y el favicon se generan desde el escudo del equipo

@@ -17,9 +17,10 @@
   --text-soft: #5a6382;
   --text-faint: #8b93ad;
 
-  --win: #128a4b;
+  /* Verde/ámbar/rojo con contraste AA sobre su fondo (>= 4.5:1 en texto pequeño) */
+  --win: #0f7a42;
   --win-bg: #e2f6ea;
-  --draw: #b26a00;
+  --draw: #9c5c00;
   --draw-bg: #fdf0d9;
   --loss: #c22b2b;
   --loss-bg: #fde8e8;
@@ -523,8 +524,12 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
   padding: .15rem .45rem; border-radius: 999px;
 }
 .round__state--played { background: var(--win-bg); color: var(--win); }
+/* Resultado de la jornada: semáforo verde / ámbar / rojo (mismos tokens que los puntos de forma) */
+.round__state--won { background: var(--win-bg); color: var(--win); }
+.round__state--drawn { background: var(--draw-bg); color: var(--draw); }
+.round__state--lost { background: var(--loss-bg); color: var(--loss); }
 .round__state--next { background: var(--brand-soft); color: var(--brand); }
-.round__state--future { background: var(--surface); color: var(--text-faint); border: 1px solid var(--line); }
+.round__state--future { background: var(--surface); color: var(--text-soft); border: 1px solid var(--line); }
 
 /* ---------- Equipo ---------- */
 .team-card { padding: 1.1rem; display: grid; gap: 1rem; }

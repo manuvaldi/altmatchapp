@@ -561,12 +561,29 @@ function renderCalendario(container) {
   for (const round of rounds) {
     const ourMatches = round.matches.filter((m) => m.home.id === team.id || m.away.id === team.id);
 
-    // Badge de estado
+    // Badge de estado: si ya se jugó, se muestra el resultado (verde/ámbar/rojo)
     let badge = 'future';
     let badgeLabel = 'Próxima';
-    if (ourMatches.length > 0 && ourMatches.every((m) => m.played)) {
-      badge = 'played';
-      badgeLabel = '✓ Jugada';
+    if (ourMatches.length > 0 && ourMatches.every((m) => m.played && m.score)) {
+      const { goalsFor, goalsAgainst } = ourMatches.reduce(
+        (acc, m) => {
+          const local = m.home.id === team.id;
+          acc.goalsFor += local ? m.score.home : m.score.away;
+          acc.goalsAgainst += local ? m.score.away : m.score.home;
+          return acc;
+        },
+        { goalsFor: 0, goalsAgainst: 0 },
+      );
+      if (goalsFor > goalsAgainst) {
+        badge = 'won';
+        badgeLabel = '✓ Ganado';
+      } else if (goalsFor < goalsAgainst) {
+        badge = 'lost';
+        badgeLabel = '✕ Perdido';
+      } else {
+        badge = 'drawn';
+        badgeLabel = '= Empatado';
+      }
     } else if (ourMatches.length > 0 && round.round === nextRound) {
       badge = 'next';
       badgeLabel = 'Siguiente';
