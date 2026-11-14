@@ -58,6 +58,20 @@ npm run fetch
 4. El workflow `.github/workflows/update-data.yml` ejecuta `npm run fetch` dos veces al día
    (09:00 y 19:00 hora de Madrid) y hace commit automático si hay cambios.
 
+### Iconos de la app
+
+Los iconos de la PWA y el favicon se generan desde el escudo del equipo
+(`npm run icons`, requiere Pillow). Están versionados en `public/icons/`, así que
+no hace falta regenerarlos salvo que cambie el escudo:
+
+```bash
+npm run icons
+```
+
+> El manifest **no** puede apuntar a `data/crests/`: ese directorio se borra y se
+> vuelve a descargar en cada `npm run fetch`, y además el escudo original mide
+> 100×105 px (el navegador lo rechaza si el manifest declara 192×192).
+
 Para **forzar un refrescar** sin esperar al horario:
 - Abre **Actions → Actualizar datos RFFM → Run workflow**
 
@@ -66,12 +80,15 @@ Para **forzar un refrescar** sin esperar al horario:
 ```
 config.json                  temporada, competición, grupo y equipo
 scripts/fetch-data.mjs       descarga y normaliza datos de la RFFM
+scripts/make-icons.py        genera los iconos de la PWA a partir del escudo
 public/
   ├─ index.html             estructura HTML
   ├─ app.js                 lógica (ES6, sin dependencias)
+  ├─ names.js               anonimizado de apellidos (web + generador)
   ├─ styles.css             diseño responsive (dark mode)
   ├─ sw.js                  Service Worker (cache + refrescar)
   ├─ manifest.json          PWA (installable)
+  ├─ icons/                 iconos 192/512/maskable/favicon (generados)
   └─ data/
       ├─ snapshot.json      datos generados (clasificación, partidos, etc)
       └─ crests/            escudos descargados

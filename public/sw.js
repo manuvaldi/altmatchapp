@@ -13,10 +13,13 @@
  * sobrevive mientras el navegador no la purgue (muy por encima de 6 días).
  */
 
-const CACHE_NAME = 'altmatch-v5';
+const CACHE_NAME = 'altmatch-v6';
 const SCOPE = self.registration.scope;
 
-const STATIC_ASSETS = ['./', 'index.html', 'app.js', 'names.js', 'styles.css', 'manifest.json'].map(
+const STATIC_ASSETS = [
+  './', 'index.html', 'app.js', 'names.js', 'styles.css', 'manifest.json',
+  'icons/icon-192.png', 'icons/icon-512.png', 'icons/favicon-32.png',
+].map(
   (a) => new URL(a, SCOPE).pathname,
 );
 

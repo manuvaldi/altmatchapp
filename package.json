@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "fetch": "node scripts/fetch-data.mjs",
-    "update": "node scripts/fetch-data.mjs"
+    "update": "node scripts/fetch-data.mjs",
+    "icons": "python3 scripts/make-icons.py"
   },
   "engines": {
     "node": ">=18"
