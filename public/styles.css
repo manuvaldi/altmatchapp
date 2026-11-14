@@ -399,12 +399,22 @@ a.match:hover { background: var(--surface-2); }
 .match__team { display: flex; align-items: center; gap: .4rem; min-width: 0; }
 .match__team .crest { width: 18px; height: 18px; border-radius: 5px; }
 .match__team-name {
-  font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: .82rem; line-height: 1.28;
   color: var(--text-soft);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 .match__team--us .match__team-name { color: var(--text); font-weight: 700; }
 .match__team--win .match__team-name { font-weight: 700; }
 .match__team--lose { opacity: .72; }
+
+/* Letra del equipo ('A'/'B'/'C'): es lo único que distingue a los equipos
+   gemelos del grupo, así que va resaltada y nunca parte en dos líneas. */
+.team-suffix {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--brand);
+}
 
 .match__score { display: flex; flex-direction: column; align-items: center; gap: .15rem; }
 .match__score-val {
@@ -462,6 +472,22 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
   .standings .team-name { font-size: .76rem; line-height: 1.25; }
   .standings th, .standings td { padding: .5rem .25rem; }
   .standings .col-team { padding-left: .4rem; }
+
+  /* Filas de partido: más hueco para el nombre (se muestra entero, en 2 líneas
+     si hace falta) recortando la columna de fecha y la del marcador */
+  .match { grid-template-columns: 2.55rem 1fr auto; gap: .45rem; padding: .6rem .55rem; }
+  .match__team-name { font-size: .78rem; }
+  .match__score-val { min-width: 2.7rem; padding: .15rem .35rem; }
+}
+
+/* Móviles muy estrechos (320-360 px): recortar todo lo accesorio para que el
+   nombre del equipo tenga el máximo ancho posible */
+@media (max-width: 360px) {
+  .match { grid-template-columns: 2.3rem 1fr auto; gap: .4rem; padding: .55rem .45rem; }
+  .match__team { gap: .3rem; }
+  .match__team .crest { width: 16px; height: 16px; }
+  .match__team-name { font-size: .76rem; }
+  .match__score-val { min-width: 2.35rem; font-size: .8rem; padding: .15rem .3rem; }
 }
 
 /* ---------- Segmentado (filtros) ---------- */
@@ -512,10 +538,9 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
 
 /* Estrella del ganador (Jornadas) */
 .match__team-badge {
-  flex: none;
-  font-size: .62rem;
+  font-size: .72rem;
   line-height: 1;
-  vertical-align: middle;
+  vertical-align: -.05em;
 }
 
 /* Marcador Local/Visitante en cada equipo */

@@ -277,6 +277,21 @@ function iniciales(nombre) {
     .join('');
 }
 
+/**
+ * Nombre de equipo listo para pintar. Los nombres de este grupo son casi
+ * idénticos salvo la letra del final ("... 'B'" vs "... 'C'"), así que se
+ * resalta ese sufijo para distinguirlos de un vistazo.
+ * Devuelve HTML (con <span class="team-suffix">), no texto plano.
+ */
+const SUFIJO_EQUIPO = /\s*(['"‘’“”])([A-Z0-9]{1,3})\1\s*$/;
+function nombreEquipoHTML(nombre) {
+  const m = String(nombre || '').match(SUFIJO_EQUIPO);
+  if (!m) return String(nombre || '');
+  const base = String(nombre).slice(0, m.index).trimEnd();
+  const sufijo = `${m[1]}${m[2]}${m[1]}`;
+  return `${base} <span class="team-suffix">${sufijo}</span>`;
+}
+
 function fecha(d) {
   if (!d) return '—';
   const [y, m, dia] = d.split('-');
@@ -377,13 +392,13 @@ function renderResumen(container) {
           <div class="next__teams">
             <div class="next__side ${isHome ? 'next__side--us' : ''}">
               ${escudo(team.crest, team.name, 'next__side--us')}
-              <div class="next__name">${team.name}</div>
+              <div class="next__name">${nombreEquipoHTML(team.name)}</div>
               <div class="next__us-tag ${isHome ? '' : 'is-ghost'}">Local</div>
             </div>
             <div class="next__vs">vs</div>
             <div class="next__side">
               ${escudo(oppCrest, opponent.name)}
-              <div class="next__name">${opponent.name}</div>
+              <div class="next__name">${nombreEquipoHTML(opponent.name)}</div>
               <div class="next__us-tag ${!isHome ? '' : 'is-ghost'}">Local</div>
             </div>
           </div>
@@ -515,7 +530,7 @@ function renderClasificacion(container) {
                   <td class="col-team">
                     <div class="col-team-inner">
                       ${escudo(row.crest, row.name)}
-                      <span class="team-name">${row.name}</span>
+                      <span class="team-name">${nombreEquipoHTML(row.name)}</span>
                     </div>
                   </td>
                   <td class="hide-sm">${row.played}</td>
@@ -567,7 +582,7 @@ function matchRowHTML(m) {
     return `
       <div class="match__team ${t.id === us ? 'match__team--us' : ''}">
         ${escudo(crest, t.name)}
-        <span class="match__team-name">${t.name}</span>
+        <span class="match__team-name">${nombreEquipoHTML(t.name)}</span>
         <span class="match__loc">${local ? 'L' : 'V'}</span>
       </div>`;
   };
@@ -620,11 +635,11 @@ function matchRowWithWinner(m) {
 
   const side = (t, local) => {
     const crest = t.crest || findTeam(t.id).crest;
-    const badge = ganador && ganador === t.id ? ' <span class="match__team-badge">⭐</span>' : '';
+    const badge = ganador && ganador === t.id ? '&nbsp;<span class="match__team-badge">⭐</span>' : '';
     return `
       <div class="match__team ${t.id === us ? 'match__team--us' : ''}">
         ${escudo(crest, t.name)}
-        <span class="match__team-name">${t.name}${badge}</span>
+        <span class="match__team-name">${nombreEquipoHTML(t.name)}${badge}</span>
         <span class="match__loc">${local ? 'L' : 'V'}</span>
       </div>`;
   };
