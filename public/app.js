@@ -4,6 +4,8 @@
  * Sin dependencias externas.
  */
 
+import { nombreAnonimo } from './names.js';
+
 let snapshot = null;
 const VIEWS = ['resumen', 'clasificacion', 'jornadas', 'calendario', 'equipo'];
 let currentView = VIEWS[0];
@@ -200,43 +202,6 @@ function escudo(crest, alt = '', cls = '') {
 }
 
 /** "C.F. MADRID RIO ..." -> "MR" */
-/** Partículas que se dejan tal cual al enmascarar apellidos (no identifican) */
-const PARTICULAS = new Set(['de', 'del', 'la', 'las', 'los', 'el', 'y', 'e', 'da', 'di', 'do', 'dos', 'van', 'von']);
-
-/**
- * Enmascara los apellidos de un jugador para publicar la plantilla sin
- * exponer datos personales: de cada palabra se conservan las 2 primeras
- * letras y el resto pasa a X.
- *   "ALFARO BARQUIN, IÑIGO"      -> "ALXXXXX BAXXXXXX, IÑIGO"
- *   "DE LA FUENTE SIMEONOV, AARON" -> "DE LA FUXXXXX SIXXXXXXX, AARON"
- * El nombre de pila (lo que va tras la coma) se mantiene intacto.
- */
-function nombreAnonimo(nombre) {
-  const original = (nombre || '').trim();
-  if (!original) return '';
-
-  const coma = original.indexOf(',');
-  const apellidos = coma === -1 ? original : original.slice(0, coma);
-  const pila = coma === -1 ? '' : original.slice(coma);
-
-  const palabras = apellidos.split(/\s+/).filter(Boolean);
-  // Sin coma no sabemos dónde acaban los apellidos: se respeta la última palabra.
-  const aEnmascarar = coma === -1 ? palabras.slice(0, -1) : palabras;
-  const intactas = coma === -1 ? palabras.slice(-1) : [];
-
-  const mascara = (palabra) =>
-    palabra
-      .split('-')
-      .map((trozo) =>
-        PARTICULAS.has(trozo.toLowerCase()) || trozo.length < 3
-          ? trozo
-          : trozo.slice(0, 2) + 'X'.repeat(trozo.length - 1),
-      )
-      .join('-');
-
-  return [...aEnmascarar.map(mascara), ...intactas].join(' ') + pila;
-}
-
 function iniciales(nombre) {
   return (nombre || '?')
     .replace(/['’][^'’]*['’]/g, ' ')

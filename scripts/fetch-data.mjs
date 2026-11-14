@@ -13,6 +13,7 @@ import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { nombreAnonimo } from '../public/names.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -292,7 +293,8 @@ async function main() {
             shortsColors: [k.color_pantalon1, k.color_pantalon2].filter(Boolean),
             socksColors: [k.color_medias1, k.color_medias2].filter(Boolean),
           })),
-          players: (t.jugadores_equipo || []).map((p) => ({ id: p.cod_jugador, name: p.nombre })),
+          // Los apellidos de los niños no se publican: el JSON va anonimizado.
+          players: (t.jugadores_equipo || []).map((p) => ({ id: p.cod_jugador, name: nombreAnonimo(p.nombre) })),
           delegates: (t.delegados_equipo || []).map((d) => d.nombre),
           coaches: (t.tecnicos_equipo || []).map((d) => d.nombre),
         };
