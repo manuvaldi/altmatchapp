@@ -197,14 +197,14 @@ function fecha(d) {
   return date.toLocaleDateString('es-ES', { weekday: 'short', day: '2-digit', month: '2-digit' }).replace(/\s+/g, ' ');
 }
 
-/** "2026-11-21" -> "Sábado 21 de noviembre" (para el próximo partido) */
-function fechaLarga(d) {
+/** "2026-11-21" -> "Sáb 21 nov" (compacto: cabe junto a la hora en una línea) */
+function fechaCompacta(d) {
   if (!d) return '—';
   const [y, m, dia] = d.split('-');
   const date = new Date(y, parseInt(m) - 1, dia);
   if (isNaN(date.getTime())) return d;
   const s = date
-    .toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })
+    .toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })
     .replace(',', '')
     .replace(/\s+/g, ' ');
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -281,8 +281,9 @@ function renderResumen(container) {
           <span class="next__tag">🎯 Próximo partido</span>
         </div>
         <div class="next__when">
-          <span class="next__when-day">${fechaLarga(nextMatch.date)}</span>
-          <span class="next__when-time">${nextMatch.time || 'Horario por confirmar'}</span>
+          <span class="next__when-day">${fechaCompacta(nextMatch.date)}</span>
+          <span class="next__when-sep" aria-hidden="true">·</span>
+          <span class="next__when-time">${nextMatch.time || 'Hora por confirmar'}</span>
         </div>
         <div class="next__teams">
           <div class="next__side ${isHome ? 'next__side--us' : ''}">
