@@ -67,11 +67,18 @@ function refreshCache() {
   showToast('🔄 Refrescando datos...');
 
   const channel = new MessageChannel();
-  channel.port1.onmessage = (event) => {
+  channel.port1.onmessage = async (event) => {
     if (btn) btn.disabled = false;
     const { type, error } = event.data;
     if (type === 'REFRESH_SUCCESS') {
-      showToast('✓ Datos refrescados. Recarga la página.');
+      try {
+        snapshot = await loadSnapshot();
+        render();
+        showView(currentView);
+        showToast('✓ Datos actualizados');
+      } catch (err) {
+        showToast(`❌ ${err.message}`);
+      }
     } else {
       showToast(`❌ Error: ${error || 'fallo al refrescar'}`);
     }
@@ -90,11 +97,10 @@ window.refreshCache = refreshCache;
    ======================================================================== */
 
 async function loadSnapshot() {
-  const url = `data/snapshot.json?v=${Date.now()}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status} al cargar snapshot`);
+  const res = await fetch('data/snapshot.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`HTTP ${res.status} al cargar los datos`);
   const data = await res.json();
-  if (!data) throw new Error('Snapshot vacío');
+  if (!data || !Array.isArray(data.rounds)) throw new Error('Los datos recibidos están incompletos');
   return data;
 }
 
@@ -184,9 +190,21 @@ function showView(view) {
 
 function escudo(crest, alt = '', cls = '') {
   if (!crest) {
-    return `<div class="crest ${cls} crest--empty" title="${alt || 'Sin escudo'}" aria-label="${alt}">✦</div>`;
+    return `<div class="crest ${cls} crest--empty" title="${alt || 'Sin escudo'}" aria-label="${alt}">${iniciales(alt)}</div>`;
   }
-  return `<div class="crest ${cls}" title="${alt}" aria-label="${alt}"><img src="data/crests/${crest}" alt="" decoding="async" loading="lazy" /></div>`;
+  return `<div class="crest ${cls}" title="${alt}" aria-label="${alt}"><img src="data/crests/${crest}" alt="" decoding="async" loading="lazy"
+    onerror="this.parentNode.classList.add('crest--empty');this.parentNode.textContent='${iniciales(alt)}'" /></div>`;
+}
+
+/** "C.F. MADRID RIO ..." -> "MR" */
+function iniciales(nombre) {
+  return (nombre || '?')
+    .replace(/['’][^'’]*['’]/g, ' ')
+    .split(/[^A-Za-zÁÉÍÓÚÑ]+/)
+    .filter((w) => w && !/^(c|f|cd|cf|ad|de|del|la|el|los|las)$/i.test(w))
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join('');
 }
 
 function fecha(d) {
@@ -220,7 +238,7 @@ function formatDate(d) {
 }
 
 function findTeam(id) {
-  return snapshot.standings.rows.find((t) => t.teamId === id) || {
+  return (snapshot.standings?.rows || []).find((t) => t.teamId === id) || {
     teamId: id,
     name: 'Equipo desconocido',
   };
@@ -241,7 +259,7 @@ function formHTML(arr) {
 
 function renderResumen(container) {
   const { team, standings, rounds } = snapshot;
-  const ourTeam = standings.rows.find((r) => r.teamId === team.id);
+  const ourTeam = standings?.rows?.find((r) => r.teamId === team.id);
 
   // Próximo partido
   let nextMatch = null;
@@ -348,7 +366,8 @@ function renderResumen(container) {
             </div>
           </div>
         `
-            : '<div class="empty">Sin datos de clasificación</div>'
+            : `<div class="empty">Clasificación no disponible ahora mismo.
+                 <button class="btn" style="margin-left:.5rem" onclick="refreshCache()">Reintentar</button></div>`
         }
       </div>
     </div>
@@ -411,8 +430,17 @@ function renderResumen(container) {
 function renderClasificacion(container) {
   const { standings, team } = snapshot;
 
-  if (!standings) {
-    container.innerHTML = '<div class="empty">Sin datos de clasificación</div>';
+  if (!standings || !standings.rows?.length) {
+    container.innerHTML = `
+      <div class="state" style="margin-top: 1rem;">
+        <div class="state__icon">📊</div>
+        <h2>Clasificación no disponible</h2>
+        <p>La RFFM no devolvió la clasificación en la última actualización.
+           Los partidos y el calendario siguen disponibles.</p>
+        <p style="margin-top: 1rem;">
+          <button class="btn btn--primary" onclick="refreshCache()">🔄 Volver a intentarlo</button>
+        </p>
+      </div>`;
     return;
   }
 
@@ -697,7 +725,15 @@ function render() {
   const { team, competition, group, season, standings } = snapshot;
 
   // Hero
-  document.getElementById('hero-crest').innerHTML = team.crest ? `<img src="data/crests/${team.crest}" alt="" decoding="async" loading="lazy" />` : '✦';
+  const heroCrest = document.getElementById('hero-crest');
+  if (team.crest) {
+    heroCrest.innerHTML = `<img src="data/crests/${team.crest}" alt="" decoding="async" loading="lazy" />`;
+    heroCrest.querySelector('img').addEventListener('error', () => {
+      heroCrest.innerHTML = `<span class="initials">${iniciales(team.name)}</span>`;
+    });
+  } else {
+    heroCrest.innerHTML = `<span class="initials">${iniciales(team.name)}</span>`;
+  }
   document.getElementById('hero-eyebrow').textContent = competition.name;
   document.getElementById('hero-title').textContent = team.name;
   document.getElementById('hero-season').textContent = `${season.name}`;

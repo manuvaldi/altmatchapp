@@ -29,10 +29,22 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 /* HTTP con reintentos (la API de la RFFM falla de forma intermitente) */
 /* ------------------------------------------------------------------ */
 
+/* Rate limit global: la RFFM parece bloquear ráfagas de peticiones.
+   Todas las peticiones pasan por fetchText, así que aquí garantizamos
+   al menos MIN_INTERVAL ms entre una query y la siguiente. */
+let lastRequestAt = 0;
+const MIN_INTERVAL_MS = 1000;
+async function throttle() {
+  const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now();
+  if (wait > 0) await sleep(wait);
+  lastRequestAt = Date.now();
+}
+
 async function fetchText(url, { attempts = 5, binary = false } = {}) {
   let lastErr;
   for (let i = 0; i < attempts; i++) {
     try {
+      await throttle();
       const res = await fetch(url, {
         headers: { 'User-Agent': UA, Accept: binary ? '*/*' : 'application/json,text/html' },
         signal: AbortSignal.timeout(25_000),
@@ -205,28 +217,19 @@ async function main() {
 
   if (missingRounds.length) {
     console.warn(`\n⚠ Jornadas sin datos tras los reintentos: ${missingRounds.join(', ')}`);
-    console.warn('  La API de la RFFM devuelve "null" de forma intermitente; vuelve a ejecutar más tarde.');
-    if (process.env.ALTMATCH_REQUIRE_COMPLETE) {
-      throw new Error(`Snapshot incompleto: faltan las jornadas ${missingRounds.join(', ')}`);
-    }
-    // Nunca degradar un snapshot existente más completo
-    try {
-      const prev = JSON.parse(await readFile(path.join(OUT_DIR, 'snapshot.json'), 'utf8'));
-      if ((prev.rounds?.length || 0) > rounds.length) {
-        console.error(`✖ El snapshot actual (${prev.rounds.length} jornadas) es más completo que el nuevo (${rounds.length}). No se sobrescribe.`);
-        process.exit(2);
-      }
-    } catch {
-      /* sin snapshot previo: se escribe de todos modos */
-    }
   }
 
   /* --- 3. Clasificación (la API la "congela" en la última jornada jugada) --- */
 
   // Pedimos la última jornada: la API "recorta" hasta la última jornada con resultados.
-  const standingsRaw =
-    (await tryJSON(`${API}/standings?idGroup=${grupo}&round=${totalRounds}`, 6)) ||
-    (await tryJSON(`${API}/standings?idGroup=${grupo}&round=${rounds.at(-1)?.round || 1}`, 6));
+  // Si devuelve null probamos otras jornadas (falla de forma intermitente).
+  let standingsRaw = null;
+  for (const round of [totalRounds, rounds.at(-1)?.round, 1, 2]) {
+    if (!round) continue;
+    standingsRaw = await tryJSON(`${API}/standings?idGroup=${grupo}&round=${round}`, 5);
+    if (standingsRaw?.clasificacion?.length) break;
+    standingsRaw = null;
+  }
   for (const row of standingsRaw?.clasificacion || []) rememberCrest(row.url_img);
   const standings = standingsRaw
     ? {
@@ -357,8 +360,34 @@ async function main() {
     },
   };
 
+  /* --- 7. Validación: nunca publicar ni escribir datos a medias ------- */
+
+  const problems = [];
+  if (missingRounds.length) problems.push(`faltan las jornadas ${missingRounds.join(', ')}`);
+  if (!standings) problems.push('no se pudo descargar la clasificación');
+  if (!teamInfo) problems.push('no se pudo descargar la ficha del equipo');
+
+  const SNAPSHOT_PATH = path.join(OUT_DIR, 'snapshot.json');
+  const prev = await readFile(SNAPSHOT_PATH, 'utf8').then(JSON.parse).catch(() => null);
+  const score = (snap) => (snap?.rounds?.length || 0) + (snap?.standings?.rows?.length ? 1 : 0);
+
+  if (problems.length) {
+    console.warn(`\n⚠ Snapshot incompleto: ${problems.join('; ')}`);
+    if (process.env.ALTMATCH_REQUIRE_COMPLETE) {
+      throw new Error(`Snapshot incompleto: ${problems.join('; ')}`);
+    }
+    if (prev && score(prev) > score(snapshot)) {
+      console.error(
+        `✖ El snapshot guardado (${prev.rounds?.length || 0} jornadas${prev.standings ? ' + clasificación' : ''}) ` +
+          `es más completo que el nuevo. No se sobrescribe; reintenta más tarde.`,
+      );
+      process.exit(2);
+    }
+    console.warn('  Se escribe de todos modos porque no hay uno mejor guardado.');
+  }
+
   await mkdir(OUT_DIR, { recursive: true });
-  await writeFile(path.join(OUT_DIR, 'snapshot.json'), JSON.stringify(snapshot, null, 2) + '\n');
+  await writeFile(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2) + '\n');
 
   // Resumen por consola
   const ourMatches = rounds.flatMap((r) => r.matches).filter((m) => m.home.id === equipo || m.away.id === equipo);

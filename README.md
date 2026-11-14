@@ -88,11 +88,20 @@ La API de la RFFM **no envía cabeceras CORS**, así que una web en GitHub Pages
 Solución: `scripts/fetch-data.mjs` descarga todo en "build time" y genera `snapshot.json` con los escudos en local.
 La web solo lee ese fichero estático.
 
+**Descarga de datos (`scripts/fetch-data.mjs`):**
+- **1 petición por segundo** como máximo: la RFFM parece bloquear las ráfagas
+- **Reintentos con espera creciente** (hasta 4 ciclos) para las jornadas que devuelven `null`
+- **Nunca sobrescribe** un snapshot guardado más completo (si falla la red, conserva el anterior)
+- En CI (`ALTMATCH_REQUIRE_COMPLETE=1`) el job falla antes de publicar datos a medias
+
 **Service Worker (`public/sw.js`):**
-- **Cache-first**: assets estáticos y datos (`snapshot.json`) se guardan 6 días
-- **Refrescar en background**: nuevo SW notifica al cliente si hay actualizaciones
-- **Offline**: funciona sin conexión (muestra datos cacheados)
-- **Refrescar manual**: el botón 🔄 fuerza descarga del snapshot
+- **App shell cache-first**: html/js/css quedan disponibles offline
+- **Datos network-first**: `snapshot.json` se pide a la red (timeout 4 s) y, si falla o llega
+  incompleto, se usa la copia cacheada; así nunca se queda pegado un dato roto
+- **Validación**: antes de cachear se comprueba que el JSON tenga jornadas
+- **Refrescar manual**: el botón 🔄 pide datos nuevos y repinta sin recargar la página
+- **Robustez**: si falta la clasificación, la app lo indica con un aviso y un botón de reintento
+  (antes rompía con `Cannot read properties of null`)
 
 **Rendimiento:**
 - Sin dependencias JavaScript (puro ES6)
