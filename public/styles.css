@@ -510,6 +510,14 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
 .round-chip.is-selected { background: var(--brand); border-color: transparent; color: #fff; }
 .round-chip.is-played:not(.is-selected)::after { content: "·"; margin-left: .3rem; color: var(--win); font-weight: 800; }
 
+/* Estrella del ganador (Jornadas) */
+.match__team-badge {
+  flex: none;
+  font-size: .62rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
 /* Marcador Local/Visitante en cada equipo */
 .match__loc {
   flex: none;

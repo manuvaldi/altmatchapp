@@ -588,6 +588,63 @@ function matchRowHTML(m) {
     </${tag}>`;
 }
 
+/**
+ * Variante de matchRowHTML para Jornadas: añade un badge "⭐" o "✓" en el nombre
+ * del equipo ganador (si el partido está jugado). Llamada sólo desde renderJornadas.
+ */
+function matchRowWithWinner(m) {
+  const us = snapshot.team.id;
+  const isHome = m.home.id === us;
+  const played = !!(m.played && m.score);
+  const link = played && m.acta;
+
+  let scoreHTML;
+  if (played) {
+    const ourGoals = isHome ? m.score.home : m.score.away;
+    const theirGoals = isHome ? m.score.away : m.score.home;
+    const cls = ourGoals > theirGoals ? 'win' : ourGoals < theirGoals ? 'loss' : 'draw';
+    scoreHTML = `<div class="match__score-val match__score-val--${cls}">${m.score.home}–${m.score.away}</div>`;
+  } else {
+    scoreHTML = `<div class="match__score-val match__score-val--pending">vs</div>`;
+  }
+
+  // Determina quién ganó (si el partido está jugado)
+  let ganador = null;
+  if (played) {
+    const homeGoals = m.score.home;
+    const awayGoals = m.score.away;
+    if (homeGoals > awayGoals) ganador = m.home.id;
+    else if (awayGoals > homeGoals) ganador = m.away.id;
+    // Si es empate, ganador sigue siendo null
+  }
+
+  const side = (t, local) => {
+    const crest = t.crest || findTeam(t.id).crest;
+    const badge = ganador && ganador === t.id ? ' <span class="match__team-badge">⭐</span>' : '';
+    return `
+      <div class="match__team ${t.id === us ? 'match__team--us' : ''}">
+        ${escudo(crest, t.name)}
+        <span class="match__team-name">${t.name}${badge}</span>
+        <span class="match__loc">${local ? 'L' : 'V'}</span>
+      </div>`;
+  };
+
+  const tag = link ? 'a' : 'div';
+  const attrs = link ? `href="${m.acta}" target="_blank" rel="noopener"` : '';
+  return `
+    <${tag} class="match" ${attrs}>
+      <div class="match__date">
+        <span class="match__day">${isHome ? '🏠' : '✈️'}</span>
+        <span class="match__time">${m.time || '--:--'}</span>
+      </div>
+      <div class="match__teams">
+        ${side(m.home, true)}
+        ${side(m.away, false)}
+      </div>
+      <div class="match__score">${scoreHTML}</div>
+    </${tag}>`;
+}
+
 /* ========================================================================
    Renderizado — Calendario
    ======================================================================== */
@@ -723,7 +780,7 @@ function renderJornadas(container) {
           </div>
         </div>
         <div class="matches">
-          ${round.matches.map((m) => matchRowHTML(m)).join('')}
+          ${round.matches.map((m) => matchRowWithWinner(m)).join('')}
         </div>
       </div>
     </div>
