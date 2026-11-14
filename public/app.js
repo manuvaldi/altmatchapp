@@ -27,6 +27,59 @@ function showToast(message, ms = 3500) {
 window.showToast = showToast;
 
 /* ========================================================================
+   Instalación PWA
+   ======================================================================== */
+
+let deferredPrompt = null;
+
+async function requestInstallation() {
+  if (!deferredPrompt) {
+    if (esIOS) {
+      showToast('Pulsa Compartir ⬆︎ y luego «Añadir a pantalla de inicio»', 6000);
+    } else {
+      showToast('Usa el menú del navegador → «Instalar aplicación»', 6000);
+    }
+    return;
+  }
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if (outcome === 'accepted') showToast('✓ Aplicación instalada');
+  deferredPrompt = null;
+  const btn = document.getElementById('btn-install');
+  if (btn) btn.style.display = 'none';
+}
+window.requestInstallation = requestInstallation;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+  const btn = document.getElementById('btn-install');
+  if (btn) btn.style.display = 'grid';
+});
+
+// iOS/iPadOS (Safari) no soporta beforeinstallprompt: se muestra el botón igualmente,
+// con instrucciones manuales (Compartir → Añadir a pantalla de inicio).
+const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const yaInstalada = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+if (esIOS && !yaInstalada) {
+  const mostrarEnIOS = () => {
+    const btn = document.getElementById('btn-install');
+    if (btn) btn.style.display = 'grid';
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mostrarEnIOS);
+  } else {
+    mostrarEnIOS();
+  }
+}
+
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('btn-install');
+  if (btn) btn.style.display = 'none';
+  deferredPrompt = null;
+});
+
+/* ========================================================================
    Service Worker
    ======================================================================== */
 

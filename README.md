@@ -58,6 +58,23 @@ npm run fetch
 4. El workflow `.github/workflows/update-data.yml` ejecuta `npm run fetch` dos veces al día
    (09:00 y 19:00 hora de Madrid) y hace commit automático si hay cambios.
 
+### Instalar en móvil o PC
+
+La web es una PWA (Progressive Web App) instalable. Hay un botón flotante verde 📱
+que aparece cuando la app se puede instalar (Android/Chrome/Edge) o en iPhone/iPad
+(donde se muestran las instrucciones). Desaparece una vez instalada. Al hacer clic:
+
+1. **Android**: elige "Instalar aplicación"; aparecerá un ícono en la pantalla
+   de inicio y se abre como una aplicación nativa.
+2. **iPhone/iPad**: el navegador no lo soporta. Alternativa: **Share → Add to Home
+   Screen** (el ícono viene del `apple-touch-icon`).
+3. **PC/Mac**: los navegadores modernos (Chrome, Edge) mostrarán el aviso en la
+   barra de direcciones o un ícono en el menú. Una vez instalada, se abre en su
+   propia ventana sin barra de direcciones.
+
+Los datos (snapshot + escudos) se cachean mínimo 6 días; el botón 🔄 recarga los
+datos sin perder la caché de código.
+
 ### Fuera de los buscadores
 
 La web es de un equipo infantil y no debe salir en Google ni en otros buscadores:

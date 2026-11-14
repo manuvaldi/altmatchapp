@@ -625,6 +625,13 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
 .fab:disabled { opacity: .5; cursor: wait; transform: rotate(180deg); }
 .fab:disabled:hover { transform: rotate(200deg); }
 
+/* Botón de instalar (aparece sólo si es instalable): a la izquierda del de refrescar */
+.fab--install {
+  right: calc(1rem + 3.25rem + .6rem + env(safe-area-inset-right));
+  background: #10a853;
+}
+.fab--install:hover { background: #0d8c43; }
+
 /* ---------- Toast ---------- */
 .toast {
   position: fixed; left: 50%; bottom: calc(1.2rem + env(safe-area-inset-bottom));
