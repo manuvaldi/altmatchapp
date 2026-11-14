@@ -49,12 +49,13 @@ npm run fetch      # descarga nuevos datos
 ## Subir a GitHub Pages
 
 ```bash
-git remote add origin https://github.com/tu-usuario/altmatch.git
+git remote add origin https://github.com/manuvaldi/altmatchapp.git
 git push -u origin main
 ```
 
-En **Settings → Pages** elige **Source: GitHub Actions**.
-El sitio se despliega automáticamente y se actualiza 2x/día.
+En **Settings → Pages**, en *Build and deployment* elige **Source: GitHub Actions**.
+El sitio se despliega en `https://manuvaldi.github.io/altmatchapp/`
+y se actualiza 2x/día.
 
 ---
 

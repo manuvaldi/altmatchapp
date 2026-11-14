@@ -1,5 +1,7 @@
 # AltMatch · C.F. Madrid Río – Arganzuela 'C'
 
+[📱 Ir a la web](https://manuvaldi.github.io/altmatchapp) | [📦 Código](https://github.com/manuvaldi/altmatchapp)
+
 Web **mobile-first** y **offline-first** para seguir al equipo: clasificación, calendario, resultados y próximo partido.
 Datos oficiales de la [RFFM](https://www.rffm.es), con **cache de 6 días** y botón de refrescar.
 
@@ -83,7 +85,7 @@ La web es de un equipo infantil y no debe salir en Google ni en otros buscadores
   de verdad funciona: Google lo lee y retira la URL del índice.
 - `public/robots.txt` bloquea a buscadores y a rastreadores de IA (GPTBot, CCBot,
   ClaudeBot, PerplexityBot…). Ojo: los robots sólo leen `/robots.txt` de la raíz
-  del dominio, así que en una *project page* (`usuario.github.io/repo/`) puede que
+  del dominio, así que en una *project page* (`manuvaldi.github.io/altmatchapp/`) puede que
   no lo lean nunca; el `noindex` del HTML sí aplica siempre.
 - No hay forma de añadir cabeceras HTTP (`X-Robots-Tag`) en GitHub Pages.
 
