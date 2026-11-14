@@ -2038,7 +2038,7 @@
     "coaches": []
   },
   "source": {
-    "calendar": "https://www.rffm.es/competicion/calendario?temporada=22&competicion=26737926&grupo=26737940",
+    "calendar": "https://www.rffm.es/competicion/calendario?temporada=22&tipojuego=2&competicion=26737926&grupo=26737940",
     "team": "https://www.rffm.es/fichaequipo/4941878"
   }
 }
