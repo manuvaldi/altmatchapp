@@ -325,13 +325,13 @@ function renderResumen(container) {
             <div class="next__side ${isHome ? 'next__side--us' : ''}">
               ${escudo(team.crest, team.name, 'next__side--us')}
               <div class="next__name">${team.name}</div>
-              ${isHome ? '<div class="next__us-tag">Local</div>' : ''}
+              <div class="next__us-tag ${isHome ? '' : 'is-ghost'}">Local</div>
             </div>
             <div class="next__vs">vs</div>
             <div class="next__side">
               ${escudo(oppCrest, opponent.name)}
               <div class="next__name">${opponent.name}</div>
-              ${!isHome ? '<div class="next__us-tag">Local</div>' : ''}
+              <div class="next__us-tag ${!isHome ? '' : 'is-ghost'}">Local</div>
             </div>
           </div>
           <div class="next__meta">
