@@ -54,6 +54,8 @@ git push -u origin main
 ```
 
 En **Settings → Pages**, en *Build and deployment* elige **Source: GitHub Actions**.
+Hazlo **antes** del primer push: si no, el workflow falla con
+`Get Pages site failed` (el `GITHUB_TOKEN` no puede activar Pages solo).
 El sitio se despliega en `https://manuvaldi.github.io/altmatchapp/`
 y se actualiza 2x/día.
 

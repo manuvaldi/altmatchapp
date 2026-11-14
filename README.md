@@ -56,9 +56,15 @@ npm run fetch
 
 1. Sube el repositorio a GitHub (rama `main`).
 2. En **Settings → Pages**, en *Build and deployment* elige **Source: GitHub Actions**.
+   Es un paso manual que hay que hacer **antes** del primer despliegue: el token del
+   workflow (`GITHUB_TOKEN`) no tiene permiso para activar Pages por sí solo.
 3. Cada push a `main` despliega la web en GitHub Pages.
 4. El workflow `.github/workflows/update-data.yml` ejecuta `npm run fetch` dos veces al día
    (09:00 y 19:00 hora de Madrid) y hace commit automático si hay cambios.
+
+**Si el despliegue falla** con `Get Pages site failed. Please verify that the repository
+has Pages enabled and configured to build using GitHub Actions`: falta el paso 2. Actívalo
+y luego **Re-run jobs** en la pestaña *Actions* (no hace falta un commit nuevo).
 
 ### Instalar en móvil o PC
 
