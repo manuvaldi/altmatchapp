@@ -13,7 +13,7 @@
  * sobrevive mientras el navegador no la purgue (muy por encima de 6 días).
  */
 
-const CACHE_NAME = 'altmatch-v14';
+const CACHE_NAME = 'altmatch-v15';
 const SCOPE = self.registration.scope;
 
 const STATIC_ASSETS = [

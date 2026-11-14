@@ -173,7 +173,7 @@ async function main() {
         name: m.Nombre_equipo_visitante,
         crest: rememberCrest(m.url_img_visitante),
       },
-      acta: m.codacta ? `https://www.rffm.es/acta-partido?codacta=${m.codacta}` : null,
+      acta: m.codacta ? `https://www.rffm.es/acta-partido/${m.codacta}?temporada=${config.temporada}&competicion=${config.competicion}&grupo=${config.grupo}` : null,
     }));
 
     return {
