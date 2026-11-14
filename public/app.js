@@ -541,11 +541,12 @@ function renderCalendario(container) {
     }
 
     html += `<div class="round">`;
+    const ourTime = ourMatches.find((m) => m.time)?.time || null;
     html += `
       <div class="round__head">
         <div>
           <div class="round__title">Jornada ${round.round}</div>
-          <div class="round__date">${formatDate(round.date)}</div>
+          <div class="round__date">${formatDate(round.date)}${ourTime ? `, ${ourTime}` : ''}</div>
         </div>
         <div class="round__state round__state--${badge}">${badgeLabel}</div>
       </div>
