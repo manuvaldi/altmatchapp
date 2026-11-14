@@ -60,7 +60,11 @@ npm run fetch
    workflow (`GITHUB_TOKEN`) no tiene permiso para activar Pages por sí solo.
 3. Cada push a `main` despliega la web en GitHub Pages.
 4. El workflow `.github/workflows/update-data.yml` ejecuta `npm run fetch` dos veces al día
-   (09:00 y 19:00 hora de Madrid) y hace commit automático si hay cambios.
+   (12:00 y 22:00 hora de Madrid) y hace commit automático si hay cambios.
+5. Ese commit **no** dispara un `push` normal (lo hace el `GITHUB_TOKEN`, que no lanza
+   workflows), así que `deploy-pages.yml` escucha además el evento `workflow_run`:
+   cuando el update termina bien, se redespliega la web con los datos nuevos.
+   Si el update falla, no se despliega nada (no se publica un snapshot a medias).
 
 **Si el despliegue falla** con `Get Pages site failed. Please verify that the repository
 has Pages enabled and configured to build using GitHub Actions`: falta el paso 2. Actívalo

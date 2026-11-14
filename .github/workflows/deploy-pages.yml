@@ -3,9 +3,17 @@ name: Desplegar en GitHub Pages
 # Requisito (una sola vez, a mano): Settings -> Pages -> Build and deployment
 # -> Source: "GitHub Actions". Sin eso, este workflow falla con
 # "Get Pages site failed. Please verify that the repository has Pages enabled".
+#
+# OJO: los commits que hace update-data.yml llevan el GITHUB_TOKEN, y GitHub no
+# dispara eventos `push` para esos commits. Por eso el redespliegue de los datos
+# se engancha con `workflow_run` (si renombras "Actualizar datos RFFM", cámbialo aquí).
 
 on:
   push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Actualizar datos RFFM"]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -20,6 +28,9 @@ concurrency:
 
 jobs:
   deploy:
+    # Si venimos del workflow de datos, sólo desplegar cuando acabó bien
+    # (así un fetch a medias no publica un snapshot incompleto).
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
