@@ -5,7 +5,7 @@
  */
 
 let snapshot = null;
-const VIEWS = ['resumen', 'clasificacion', 'calendario', 'equipo'];
+const VIEWS = ['resumen', 'clasificacion', 'jornadas', 'calendario', 'equipo'];
 let currentView = VIEWS[0];
 
 /* ========================================================================
@@ -174,6 +174,9 @@ function showView(view) {
       break;
     case 'calendario':
       renderCalendario(el);
+      break;
+    case 'jornadas':
+      renderJornadas(el);
       break;
     case 'equipo':
       renderEquipo(el);
@@ -381,40 +384,7 @@ function renderResumen(container) {
           <h2 class="section__title">📅 Últimos resultados</h2>
         </div>
         <div class="matches">
-          ${recentMatches
-            .map((m) => {
-              const isHome = m.home.id === team.id;
-              const opponent = isHome ? m.away : m.home;
-              const oppTeam = findTeam(opponent.id);
-              const oppCrest = opponent.crest || oppTeam.crest;
-              const gf = m.score.home;
-              const gc = m.score.away;
-              const weScore = isHome ? gf : gc;
-              const theyScore = isHome ? gc : gf;
-              const result = weScore > theyScore ? 'win' : weScore < theyScore ? 'loss' : 'draw';
-
-              return `
-                <a href="#" class="match" onclick="showView('calendario'); return false;">
-                  <div class="match__date">
-                    <span class="match__day">J${m.round}</span>
-                    <span class="match__time">${fecha(m.date)}</span>
-                  </div>
-                  <div class="match__teams">
-                    <div class="match__team match__team--us ${result === 'win' ? 'match__team--win' : result === 'loss' ? 'match__team--lose' : ''}">
-                      <span class="match__team-name">${team.name}</span>
-                    </div>
-                    <div class="match__team match__team--op ${result === 'loss' ? 'match__team--win' : result === 'win' ? 'match__team--lose' : ''}">
-                      <span class="match__team-name">${opponent.name}</span>
-                    </div>
-                  </div>
-                  <div class="match__score">
-                    <div class="match__score-val match__score-val--${result}">${weScore}–${theyScore}</div>
-                    ${result === 'win' ? '<div class="match__badge">✓ Victoria</div>' : result === 'loss' ? '<div class="match__badge">✗ Derrota</div>' : '<div class="match__badge">= Empate</div>'}
-                  </div>
-                </a>
-              `;
-            })
-            .join('')}
+          ${recentMatches.map((m) => matchRowHTML(m)).join('')}
         </div>
       </div>
     `;
@@ -504,6 +474,52 @@ function renderClasificacion(container) {
 }
 
 /* ========================================================================
+   Fila de partido: local arriba, visitante abajo (orden real del partido)
+   ======================================================================== */
+
+function matchRowHTML(m) {
+  const us = snapshot.team.id;
+  const isHome = m.home.id === us;
+  const played = !!(m.played && m.score);
+  const link = played && m.acta;
+
+  let scoreHTML;
+  if (played) {
+    const ourGoals = isHome ? m.score.home : m.score.away;
+    const theirGoals = isHome ? m.score.away : m.score.home;
+    const cls = ourGoals > theirGoals ? 'win' : ourGoals < theirGoals ? 'loss' : 'draw';
+    scoreHTML = `<div class="match__score-val match__score-val--${cls}">${m.score.home}–${m.score.away}</div>`;
+  } else {
+    scoreHTML = `<div class="match__score-val match__score-val--pending">vs</div>`;
+  }
+
+  const side = (t, local) => {
+    const crest = t.crest || findTeam(t.id).crest;
+    return `
+      <div class="match__team ${t.id === us ? 'match__team--us' : ''}">
+        ${escudo(crest, t.name)}
+        <span class="match__team-name">${t.name}</span>
+        <span class="match__loc">${local ? 'L' : 'V'}</span>
+      </div>`;
+  };
+
+  const tag = link ? 'a' : 'div';
+  const attrs = link ? `href="${m.acta}" target="_blank" rel="noopener"` : '';
+  return `
+    <${tag} class="match" ${attrs}>
+      <div class="match__date">
+        <span class="match__day">${isHome ? '🏠' : '✈️'}</span>
+        <span class="match__time">${m.time || '--:--'}</span>
+      </div>
+      <div class="match__teams">
+        ${side(m.home, true)}
+        ${side(m.away, false)}
+      </div>
+      <div class="match__score">${scoreHTML}</div>
+    </${tag}>`;
+}
+
+/* ========================================================================
    Renderizado — Calendario
    ======================================================================== */
 
@@ -554,46 +570,7 @@ function renderCalendario(container) {
 
     if (ourMatches.length > 0) {
       html += `<div class="matches">`;
-      for (const m of ourMatches) {
-        const isHome = m.home.id === team.id;
-        const opponent = isHome ? m.away : m.home;
-        const oppTeam = findTeam(opponent.id);
-        const oppCrest = opponent.crest || oppTeam.crest;
-
-        let score = '—';
-        let scoreCls = 'pending';
-        if (m.played && m.score) {
-          const gf = m.score.home;
-          const gc = m.score.away;
-          const weScore = isHome ? gf : gc;
-          const theyScore = isHome ? gc : gf;
-          score = `${weScore}–${theyScore}`;
-          scoreCls = weScore > theyScore ? 'win' : weScore < theyScore ? 'loss' : 'draw';
-        }
-
-        html += `
-          <a href="${m.acta || '#'}" ${m.acta ? 'target="_blank" rel="noopener"' : 'onclick="return false;"'} class="match">
-            <div class="match__date">
-              <span class="match__day">${isHome ? '🏠' : '✈️'}</span>
-              <span class="match__time">${m.time || 'TBD'}</span>
-            </div>
-            <div class="match__teams">
-              <div class="match__team match__team--us">
-                ${escudo(snapshot.team.crest, snapshot.team.name)}
-                <span class="match__team-name">${snapshot.team.name}</span>
-              </div>
-              <div class="match__team">
-                ${escudo(oppCrest, opponent.name)}
-                <span class="match__team-name">${opponent.name}</span>
-              </div>
-            </div>
-            <div class="match__score">
-              <div class="match__score-val match__score-val--${scoreCls}">${score}</div>
-              ${m.venue ? `<div class="match__badge">${m.venue.split('-')[0]}</div>` : ''}
-            </div>
-          </a>
-        `;
-      }
+      for (const m of ourMatches) html += matchRowHTML(m);
       html += `</div>`;
     } else {
       html += `<div class="empty" style="padding: .6rem .8rem;">Ningún partido en esta jornada</div>`;
@@ -606,6 +583,71 @@ function renderCalendario(container) {
 
   container.innerHTML = html;
 }
+
+/* ========================================================================
+   Renderizado — Jornadas (todas los partidos de la jornada elegida)
+   ======================================================================== */
+
+let jornadaElegida = null;
+
+function renderJornadas(container) {
+  const { rounds, team } = snapshot;
+  if (!rounds || !rounds.length) {
+    container.innerHTML = '<div class="empty">Sin datos de jornadas</div>';
+    return;
+  }
+
+  // Jornada por defecto: la que tiene nuestro próximo partido; si no, la última
+  if (jornadaElegida === null || !rounds.some((r) => r.round === jornadaElegida)) {
+    const next = rounds.find((r) =>
+      r.matches.some((m) => (m.home.id === team.id || m.away.id === team.id) && !m.played),
+    );
+    jornadaElegida = next ? next.round : rounds.at(-1).round;
+  }
+
+  const round = rounds.find((r) => r.round === jornadaElegida);
+  const allPlayed = round.matches.length > 0 && round.matches.every((m) => m.played);
+
+  const chips = rounds
+    .map((r) => {
+      const isSel = r.round === jornadaElegida;
+      const jugada = r.matches.length > 0 && r.matches.every((m) => m.played);
+      return `<button class="round-chip${isSel ? ' is-selected' : ''}${jugada ? ' is-played' : ''}"
+        aria-pressed="${isSel}" onclick="seleccionarJornada(${r.round})">${r.round}</button>`;
+    })
+    .join('');
+
+  container.innerHTML = `
+    <div class="section">
+      <div class="section__head">
+        <h2 class="section__title">Jornadas</h2>
+        <div class="section__hint">
+          ${round.matches.length} partidos · ${allPlayed ? '✓ jugada' : 'pendiente'}
+        </div>
+      </div>
+      <div class="round-picker" role="group" aria-label="Elegir jornada">${chips}</div>
+      <div class="round">
+        <div class="round__head">
+          <div>
+            <div class="round__title">Jornada ${round.round}</div>
+            <div class="round__date">${formatDate(round.date)}</div>
+          </div>
+          <div class="round__state round__state--${allPlayed ? 'played' : round.round === jornadaElegida ? 'next' : 'future'}">
+            ${allPlayed ? '✓ Jugada' : 'Pendiente'}
+          </div>
+        </div>
+        <div class="matches">
+          ${round.matches.map((m) => matchRowHTML(m)).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+window.seleccionarJornada = (roundNumber) => {
+  jornadaElegida = roundNumber;
+  renderJornadas(document.getElementById('view-jornadas'));
+};
 
 /* ========================================================================
    Renderizado — Equipo

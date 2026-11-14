@@ -465,6 +465,46 @@ table.standings { width: 100%; border-collapse: collapse; font-size: .84rem; }
 
 .filters { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: .8rem; }
 
+/* ---------- Selector de jornadas ---------- */
+.round-picker {
+  display: flex;
+  gap: .3rem;
+  overflow-x: auto;
+  padding: .15rem .1rem .45rem;
+  margin-bottom: .8rem;
+  scrollbar-width: thin;
+}
+.round-chip {
+  flex: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-soft);
+  border-radius: 999px;
+  padding: .34rem .68rem;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.round-chip:hover { background: var(--surface-2); color: var(--text); }
+.round-chip.is-selected { background: var(--brand); border-color: transparent; color: #fff; }
+.round-chip.is-played:not(.is-selected)::after { content: "·"; margin-left: .3rem; color: var(--win); font-weight: 800; }
+
+/* Marcador Local/Visitante en cada equipo */
+.match__loc {
+  flex: none;
+  font-size: .56rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  color: var(--text-faint);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 .22rem;
+  margin-left: auto;
+}
+
 /* ---------- Jornadas ---------- */
 .rounds { display: grid; gap: .7rem; }
 
