@@ -9,7 +9,7 @@
  * Uso: npm run fetch
  */
 
-import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, rm, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -216,8 +216,26 @@ async function main() {
 
   if (!rounds.length) throw new Error('No se pudo descargar ninguna jornada');
 
+  const SNAPSHOT_PATH = path.join(OUT_DIR, 'snapshot.json');
+  const prev = await readFile(SNAPSHOT_PATH, 'utf8').then(JSON.parse).catch(() => null);
+
   if (missingRounds.length) {
     console.warn(`\n⚠ Jornadas sin datos tras los reintentos: ${missingRounds.join(', ')}`);
+  }
+
+  /* La RFFM a veces deja una jornada devolviendo `null` durante horas (no es
+     intermitencia: responde null una y otra vez). En ese caso reutilizamos la
+     copia del snapshot anterior para esa jornada, en vez de abortar toda la
+     actualización y dejar la web sin resultados nuevos ni clasificación. */
+  const warnings = [];
+  for (const round of [...missingRounds]) {
+    const old = prev?.rounds?.find((r) => r.round === round);
+    if (!old) continue;
+    rounds.push(old);
+    rounds.sort((a, b) => a.round - b.round);
+    missingRounds.splice(missingRounds.indexOf(round), 1);
+    warnings.push(`jornada ${round} reutilizada del snapshot anterior (la RFFM devolvió null)`);
+    console.warn(`  ↺ jornada ${round}: sin datos en la RFFM, se reutiliza la copia anterior`);
   }
 
   /* --- 3. Clasificación (la API la "congela" en la última jornada jugada) --- */
@@ -306,9 +324,23 @@ async function main() {
 
   /* --- 5. Escudos en local ---------------------------------------- */
 
-  if (existsSync(CREST_DIR)) await rm(CREST_DIR, { recursive: true, force: true });
-  await mkdir(CREST_DIR, { recursive: true });
+  // No se borra el directorio entero: los escudos de una jornada reutilizada
+  // del snapshot anterior ya no tienen URL original conocida. Se borran sólo
+  // los que el snapshot nuevo no referencia.
+  const referenced = new Set(crestUrls.keys());
+  for (const r of rounds) {
+    for (const m of r.matches || []) {
+      if (m.home?.crest) referenced.add(m.home.crest);
+      if (m.away?.crest) referenced.add(m.away.crest);
+    }
+  }
+  for (const row of standings?.rows || []) if (row.crest) referenced.add(row.crest);
+  if (teamInfo?.crest) referenced.add(teamInfo.crest);
 
+  await mkdir(CREST_DIR, { recursive: true });
+  for (const file of await readdir(CREST_DIR).catch(() => [])) {
+    if (!referenced.has(file)) await rm(path.join(CREST_DIR, file), { force: true });
+  }
 
   let downloaded = 0;
   for (const [file, src] of crestUrls) {
@@ -355,6 +387,7 @@ async function main() {
     },
     standings,
     rounds,
+    ...(warnings.length ? { warnings } : {}),
     teamInfo,
     source: {
       calendar: config.urlCalendario,
@@ -369,8 +402,6 @@ async function main() {
   if (!standings) problems.push('no se pudo descargar la clasificación');
   if (!teamInfo) problems.push('no se pudo descargar la ficha del equipo');
 
-  const SNAPSHOT_PATH = path.join(OUT_DIR, 'snapshot.json');
-  const prev = await readFile(SNAPSHOT_PATH, 'utf8').then(JSON.parse).catch(() => null);
   const score = (snap) => (snap?.rounds?.length || 0) + (snap?.standings?.rows?.length ? 1 : 0);
 
   if (problems.length) {

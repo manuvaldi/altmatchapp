@@ -38,7 +38,9 @@ jobs:
 
       - name: Descargar datos de la RFFM
         env:
-          # Falla el job si falta alguna jornada: nunca se publica un snapshot a medias
+          # Falla sólo si falta algo sin copia anterior: nunca se publica un
+          # snapshot a medias. Si la RFFM deja una jornada en `null` durante
+          # horas, se reutiliza la copia del último snapshot para esa jornada.
           ALTMATCH_REQUIRE_COMPLETE: '1'
         run: npm run fetch
 
