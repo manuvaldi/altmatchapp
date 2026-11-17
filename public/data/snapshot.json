@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T02:52:31.698Z",
+  "generatedAt": "2026-11-17T18:56:48.304Z",
   "season": {
     "id": "22",
     "name": "2026-2027",
@@ -91,8 +91,8 @@
         "won": 2,
         "drawn": 1,
         "lost": 0,
-        "goalsFor": 3,
-        "goalsAgainst": 1,
+        "goalsFor": 2,
+        "goalsAgainst": 0,
         "points": 7,
         "pointsSanctioned": 0,
         "form": [
@@ -172,8 +172,8 @@
         "won": 1,
         "drawn": 1,
         "lost": 1,
-        "goalsFor": 2,
-        "goalsAgainst": 2,
+        "goalsFor": 1,
+        "goalsAgainst": 1,
         "points": 4,
         "pointsSanctioned": 0,
         "form": [
@@ -808,8 +808,8 @@
           "referee": "PECO ALVAREZ, JORGE",
           "played": true,
           "score": {
-            "home": 1,
-            "away": 1
+            "home": 0,
+            "away": 0
           },
           "penalties": null,
           "home": {
