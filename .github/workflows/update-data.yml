@@ -2,8 +2,10 @@ name: Actualizar datos RFFM
 
 on:
   schedule:
-    # Cada día a las 12:00 y 22:00 hora de Madrid (10:00 y 20:00 UTC)
-    - cron: '0 10,20 * * *'
+    # Cada día a las 12:00 y 22:00 hora de Madrid (la clave `timezone`
+    # aplica el cambio de hora DST, no hay que convertir a UTC a mano)
+    - cron: '0 12,22 * * *'
+      timezone: Europe/Madrid
   workflow_dispatch:
   push:
     branches: [main]
