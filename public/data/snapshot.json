@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T12:55:01.541Z",
+  "generatedAt": "2026-11-21T16:17:06.277Z",
   "season": {
     "id": "22",
     "name": "2026-2027",
@@ -1968,6 +1968,9 @@
         }
       ]
     }
+  ],
+  "warnings": [
+    "jornada 2 reutilizada del snapshot anterior (la RFFM devolvió null)"
   ],
   "teamInfo": {
     "name": "C.F. MADRID RIO - ARGANZUELA 'C'",
