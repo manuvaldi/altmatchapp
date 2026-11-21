@@ -367,12 +367,13 @@ function renderResumen(container) {
     if (nextMatch) break;
   }
 
-  // Últimos resultados
+  // Últimos resultados, más reciente primero (se recorre desde la última
+  // jornada hacia atrás y se apila en el orden de encontrarse)
   const recentMatches = [];
   for (let i = rounds.length - 1; i >= 0 && recentMatches.length < 5; i--) {
     for (const m of rounds[i].matches) {
       if ((m.home.id === team.id || m.away.id === team.id) && m.played) {
-        recentMatches.unshift({ ...m, round: rounds[i].round });
+        recentMatches.push({ ...m, round: rounds[i].round });
         break;
       }
     }
@@ -381,9 +382,8 @@ function renderResumen(container) {
   let html = '';
 
   // Último partido jugado (encima del próximo: lo más reciente primero).
-  // recentMatches está en orden cronológico ascendente (unshift al recorrer
-  // desde la última jornada hacia atrás), así que el último jugado es el final.
-  const lastMatch = recentMatches.at(-1);
+  // recentMatches está en orden inverso (más reciente primero), así que es el primero.
+  const lastMatch = recentMatches[0];
   if (lastMatch && lastMatch.score) {
     const isHome = lastMatch.home.id === team.id;
     const opponent = isHome ? lastMatch.away : lastMatch.home;
