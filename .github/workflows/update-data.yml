@@ -6,6 +6,8 @@ on:
     # aplica el cambio de hora DST, no hay que convertir a UTC a mano)
     - cron: '0 12,22 * * *'
       timezone: Europe/Madrid
+    - cron: '*/15 11-13 * * 6' 
+      timezone: Europe/Madrid
   workflow_dispatch:
   push:
     branches: [main]
