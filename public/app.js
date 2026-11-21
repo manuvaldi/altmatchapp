@@ -177,7 +177,7 @@ async function init() {
     snapshot = await loadSnapshot();
     render();
     setupNavigation();
-    updateFooter();
+    updateTimestamps();
     const initial = location.hash.replace('#', '');
     showView(VIEWS.includes(initial) ? initial : 'resumen');
     window.addEventListener('hashchange', () => {
@@ -313,6 +313,15 @@ function fechaCompacta(d) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/** "2026-11-21" -> "21 nov" (mínimo: cabe en la columna estrecha de las filas) */
+function fechaCorta(d) {
+  if (!d) return '—';
+  const [y, m, dia] = d.split('-');
+  const date = new Date(y, parseInt(m) - 1, dia);
+  if (isNaN(date.getTime())) return d;
+  return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }).replace(/\s+/g, ' ');
+}
+
 function formatDate(d) {
   if (!d) return null;
   return new Date(d + 'T00:00:00').toLocaleDateString('es-ES', {
@@ -370,6 +379,69 @@ function renderResumen(container) {
   }
 
   let html = '';
+
+  // Último partido jugado (encima del próximo: lo más reciente primero).
+  // recentMatches está en orden cronológico ascendente (unshift al recorrer
+  // desde la última jornada hacia atrás), así que el último jugado es el final.
+  const lastMatch = recentMatches.at(-1);
+  if (lastMatch && lastMatch.score) {
+    const isHome = lastMatch.home.id === team.id;
+    const opponent = isHome ? lastMatch.away : lastMatch.home;
+    const oppTeam = findTeam(opponent.id);
+    const oppCrest = opponent.crest || oppTeam.crest;
+    const ourGoals = isHome ? lastMatch.score.home : lastMatch.score.away;
+    const theirGoals = isHome ? lastMatch.score.away : lastMatch.score.home;
+    const resCls = ourGoals > theirGoals ? 'win' : ourGoals < theirGoals ? 'loss' : 'draw';
+    const resLabel = ourGoals > theirGoals ? 'Ganado' : ourGoals < theirGoals ? 'Perdido' : 'Empatado';
+
+    html += `
+      <div class="section">
+        <div class="next">
+          <div class="next__top">
+            <span class="next__tag">✅ Último partido</span>
+          </div>
+          <div class="next__when">
+            <span class="next__when-day">${fechaCompacta(lastMatch.date)}</span>
+            <span class="next__when-sep" aria-hidden="true">·</span>
+            <span class="next__when-time">${lastMatch.time || ''}</span>
+            <span class="next__when-sep" aria-hidden="true">·</span>
+            <span class="next__when-res next__when-res--${resCls}">${resLabel}</span>
+          </div>
+          <div class="next__teams">
+            <div class="next__side ${isHome ? 'next__side--us' : ''}">
+              ${escudo(team.crest, team.name)}
+              <div class="next__name">${nombreEquipoHTML(team.name)}</div>
+              <div class="next__us-tag ${isHome ? '' : 'is-ghost'}">Local</div>
+            </div>
+            <div class="next__vs next__score next__score--${resCls}">${lastMatch.score.home}–${lastMatch.score.away}</div>
+            <div class="next__side">
+              ${escudo(oppCrest, opponent.name)}
+              <div class="next__name">${nombreEquipoHTML(opponent.name)}</div>
+              <div class="next__us-tag ${!isHome ? '' : 'is-ghost'}">Local</div>
+            </div>
+          </div>
+          <div class="next__meta">
+            <div class="meta">
+              <span class="meta__label">Jornada</span>
+              <span class="meta__value">${lastMatch.round} / ${snapshot.group.totalRounds}</span>
+            </div>
+            <div class="meta">
+              <span class="meta__label">Estadio</span>
+              <span class="meta__value" style="font-size: .78rem;">${lastMatch.venue || '—'}</span>
+            </div>
+          </div>
+          ${
+            lastMatch.acta
+              ? `
+          <div class="next__actions">
+            <a class="btn" href="${lastMatch.acta}" target="_blank" rel="noopener">Ver acta</a>
+          </div>`
+              : ''
+          }
+        </div>
+      </div>
+    `;
+  }
 
   // Próximo
   if (nextMatch) {
@@ -468,7 +540,7 @@ function renderResumen(container) {
           <h2 class="section__title">📅 Últimos resultados</h2>
         </div>
         <div class="matches">
-          ${recentMatches.map((m) => matchRowHTML(m)).join('')}
+          ${recentMatches.map((m) => matchRowHTML(m, { showDate: true, showWinner: true })).join('')}
         </div>
       </div>
     `;
@@ -561,7 +633,7 @@ function renderClasificacion(container) {
    Fila de partido: local arriba, visitante abajo (orden real del partido)
    ======================================================================== */
 
-function matchRowHTML(m) {
+function matchRowHTML(m, opts = {}) {
   const us = snapshot.team.id;
   const isHome = m.home.id === us;
   const played = !!(m.played && m.score);
@@ -577,65 +649,16 @@ function matchRowHTML(m) {
     scoreHTML = `<div class="match__score-val match__score-val--pending">vs</div>`;
   }
 
-  const side = (t, local) => {
-    const crest = t.crest || findTeam(t.id).crest;
-    return `
-      <div class="match__team ${t.id === us ? 'match__team--us' : ''}">
-        ${escudo(crest, t.name)}
-        <span class="match__team-name">${nombreEquipoHTML(t.name)}</span>
-        <span class="match__loc">${local ? 'L' : 'V'}</span>
-      </div>`;
-  };
-
-  const tag = link ? 'a' : 'div';
-  const attrs = link ? `href="${m.acta}" target="_blank" rel="noopener"` : '';
-  return `
-    <${tag} class="match" ${attrs}>
-      <div class="match__date">
-        <span class="match__day">${isHome ? '🏠' : '✈️'}</span>
-        <span class="match__time">${m.time || '--:--'}</span>
-      </div>
-      <div class="match__teams">
-        ${side(m.home, true)}
-        ${side(m.away, false)}
-      </div>
-      <div class="match__score">${scoreHTML}</div>
-    </${tag}>`;
-}
-
-/**
- * Variante de matchRowHTML para Jornadas: añade un badge "⭐" o "✓" en el nombre
- * del equipo ganador (si el partido está jugado). Llamada sólo desde renderJornadas.
- */
-function matchRowWithWinner(m) {
-  const us = snapshot.team.id;
-  const isHome = m.home.id === us;
-  const played = !!(m.played && m.score);
-  const link = played && m.acta;
-
-  let scoreHTML;
-  if (played) {
-    const ourGoals = isHome ? m.score.home : m.score.away;
-    const theirGoals = isHome ? m.score.away : m.score.home;
-    const cls = ourGoals > theirGoals ? 'win' : ourGoals < theirGoals ? 'loss' : 'draw';
-    scoreHTML = `<div class="match__score-val match__score-val--${cls}">${m.score.home}–${m.score.away}</div>`;
-  } else {
-    scoreHTML = `<div class="match__score-val match__score-val--pending">vs</div>`;
-  }
-
-  // Determina quién ganó (si el partido está jugado)
+  // Ganador (para la ⭐): sólo si está jugado y no es empate
   let ganador = null;
   if (played) {
-    const homeGoals = m.score.home;
-    const awayGoals = m.score.away;
-    if (homeGoals > awayGoals) ganador = m.home.id;
-    else if (awayGoals > homeGoals) ganador = m.away.id;
-    // Si es empate, ganador sigue siendo null
+    if (m.score.home > m.score.away) ganador = m.home.id;
+    else if (m.score.away > m.score.home) ganador = m.away.id;
   }
 
   const side = (t, local) => {
     const crest = t.crest || findTeam(t.id).crest;
-    const badge = ganador && ganador === t.id ? '&nbsp;<span class="match__team-badge">⭐</span>' : '';
+    const badge = opts.showWinner && ganador === t.id ? '&nbsp;<span class="match__team-badge">⭐</span>' : '';
     return `
       <div class="match__team ${t.id === us ? 'match__team--us' : ''}">
         ${escudo(crest, t.name)}
@@ -644,12 +667,18 @@ function matchRowWithWinner(m) {
       </div>`;
   };
 
+  // Con fecha (Resumen) se muestra la fecha en vez del emoji de local/visitante:
+  // el L/V ya aparece junto a cada equipo y la fecha es más información.
+  const dayHTML = opts.showDate
+    ? `<span class="match__day">${fechaCorta(m.date)}</span>`
+    : `<span class="match__day">${isHome ? '🏠' : '✈️'}</span>`;
+
   const tag = link ? 'a' : 'div';
   const attrs = link ? `href="${m.acta}" target="_blank" rel="noopener"` : '';
   return `
-    <${tag} class="match" ${attrs}>
+    <${tag} class="match${opts.showDate ? ' match--dated' : ''}" ${attrs}>
       <div class="match__date">
-        <span class="match__day">${isHome ? '🏠' : '✈️'}</span>
+        ${dayHTML}
         <span class="match__time">${m.time || '--:--'}</span>
       </div>
       <div class="match__teams">
@@ -795,7 +824,7 @@ function renderJornadas(container) {
           </div>
         </div>
         <div class="matches">
-          ${round.matches.map((m) => matchRowWithWinner(m)).join('')}
+          ${round.matches.map((m) => matchRowHTML(m, { showWinner: true })).join('')}
         </div>
       </div>
     </div>
@@ -979,7 +1008,7 @@ function render() {
   document.getElementById('link-ficha').href = snapshot.source.team;
 }
 
-function updateFooter() {
+function updateTimestamps() {
   const date = new Date(snapshot.generatedAt);
   const formatter = new Intl.DateTimeFormat('es-ES', {
     weekday: 'short',
@@ -989,7 +1018,10 @@ function updateFooter() {
     hour: '2-digit',
     minute: '2-digit',
   });
-  document.getElementById('updated').textContent = `Actualizado: ${formatter.format(date)}`;
+  const texto = `Actualizado: ${formatter.format(date)}`;
+  // Abajo (pie) y arriba (hero), para que se vea sin llegar al final de página
+  document.getElementById('updated').textContent = texto;
+  document.getElementById('hero-updated').textContent = texto;
 }
 
 /* ========================================================================

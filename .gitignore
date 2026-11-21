@@ -3,3 +3,4 @@ _tmp/
 .DS_Store
 *.log
 _tmp_test/
+.claude
