@@ -449,6 +449,12 @@ function renderResumen(container) {
     const opponent = isHome ? nextMatch.away : nextMatch.home;
     const oppTeam = findTeam(opponent.id);
     const oppCrest = opponent.crest || oppTeam.crest;
+    // Puesto actual en la clasificación junto al nombre (p. ej. "(#1)");
+    // desaparece si no hay clasificación
+    const rankHTML = (id) => {
+      const pos = findTeam(id).position;
+      return pos ? ` <span class="next__rank">(#${pos})</span>` : '';
+    };
 
     html += `
       <div class="section">
@@ -464,13 +470,13 @@ function renderResumen(container) {
           <div class="next__teams">
             <div class="next__side ${isHome ? 'next__side--us' : ''}">
               ${escudo(team.crest, team.name, 'next__side--us')}
-              <div class="next__name">${nombreEquipoHTML(team.name)}</div>
+              <div class="next__name">${nombreEquipoHTML(team.name)}${rankHTML(team.id)}</div>
               <div class="next__us-tag ${isHome ? '' : 'is-ghost'}">Local</div>
             </div>
             <div class="next__vs">vs</div>
             <div class="next__side">
               ${escudo(oppCrest, opponent.name)}
-              <div class="next__name">${nombreEquipoHTML(opponent.name)}</div>
+              <div class="next__name">${nombreEquipoHTML(opponent.name)}${rankHTML(opponent.id)}</div>
               <div class="next__us-tag ${!isHome ? '' : 'is-ghost'}">Local</div>
             </div>
           </div>
