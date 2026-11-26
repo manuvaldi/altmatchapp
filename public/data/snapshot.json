@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T03:29:01.757Z",
+  "generatedAt": "2026-11-26T20:04:32.776Z",
   "season": {
     "id": "22",
     "name": "2026-2027",
@@ -32,7 +32,7 @@
         "position": 1,
         "teamId": "467024",
         "name": "REAL C.D. CARABANCHEL 'C'",
-        "crest": "00100_0010963629_ESCUDO.jpg",
+        "crest": "00100_0014345659_RCD_Carabanchel.png",
         "played": 4,
         "won": 4,
         "drawn": 0,
@@ -256,7 +256,7 @@
         "position": 9,
         "teamId": "300129",
         "name": "REAL C.D. CARABANCHEL 'B'",
-        "crest": "00100_0010963629_ESCUDO.jpg",
+        "crest": "00100_0014345659_RCD_Carabanchel.png",
         "played": 4,
         "won": 1,
         "drawn": 1,
@@ -418,7 +418,7 @@
           "away": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715356?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -513,7 +513,7 @@
           "home": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "17132597",
@@ -550,7 +550,7 @@
           "away": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715361?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -570,7 +570,7 @@
           "home": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "24235778",
@@ -707,7 +707,7 @@
           "away": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715367?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -827,7 +827,7 @@
           "home": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "1032269",
@@ -859,12 +859,12 @@
           "home": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715373?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -1013,7 +1013,7 @@
           "home": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "4941878",
@@ -1123,7 +1123,7 @@
           "home": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "1506",
@@ -1157,7 +1157,7 @@
           "away": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715385?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -1179,7 +1179,7 @@
           "away": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715386?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -1313,7 +1313,7 @@
           "home": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "24026240",
@@ -1401,7 +1401,7 @@
           "home": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "4923922",
@@ -1435,7 +1435,7 @@
           "away": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715397?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -1479,7 +1479,7 @@
           "away": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715399?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -1613,7 +1613,7 @@
           "home": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "1032269",
@@ -1679,7 +1679,7 @@
           "home": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "857835",
@@ -1708,7 +1708,7 @@
           "home": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "24026240",
@@ -1779,7 +1779,7 @@
           "away": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715412?temporada=22&competicion=26737926&grupo=26737940"
         },
@@ -1913,7 +1913,7 @@
           "home": {
             "id": "467024",
             "name": "REAL C.D. CARABANCHEL 'C'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "away": {
             "id": "4923922",
@@ -1962,7 +1962,7 @@
           "away": {
             "id": "300129",
             "name": "REAL C.D. CARABANCHEL 'B'",
-            "crest": "00100_0010963629_ESCUDO.jpg"
+            "crest": "00100_0014345659_RCD_Carabanchel.png"
           },
           "acta": "https://www.rffm.es/acta-partido/5715420?temporada=22&competicion=26737926&grupo=26737940"
         }
