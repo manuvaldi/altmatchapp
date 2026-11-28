@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-28T11:10:20.434Z",
+  "generatedAt": "2026-11-28T11:19:29.126Z",
   "season": {
     "id": "22",
     "name": "2026-2027",
@@ -1007,8 +1007,11 @@
           "time": "11:00",
           "venue": "COTORRUELO 3-B",
           "referee": "BARRIO CASTRO, ELENA",
-          "played": false,
-          "score": null,
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
           "penalties": null,
           "home": {
             "id": "467024",
@@ -1095,8 +1098,11 @@
           "time": "09:00",
           "venue": "COTORRUELO 3-B",
           "referee": "BARRIO CASTRO, ELENA",
-          "played": false,
-          "score": null,
+          "played": true,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
           "penalties": null,
           "home": {
             "id": "4923922",
@@ -1117,8 +1123,11 @@
           "time": "10:00",
           "venue": "COTORRUELO 3-B",
           "referee": "BARRIO CASTRO, ELENA",
-          "played": false,
-          "score": null,
+          "played": true,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
           "penalties": null,
           "home": {
             "id": "300129",
